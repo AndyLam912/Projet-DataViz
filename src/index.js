@@ -1,10 +1,10 @@
 'use strict'
 
-import * as preproc from './scripts/preprocess.js'
-import * as viz from './scripts/viz.js'
-import * as helper from './scripts/helper.js'
-import * as legend from './scripts/legend.js'
-import * as tooltip from './scripts/tooltip.js'
+import * as preproc from './scripts/viz1/preprocess.js'
+import * as viz from './scripts/viz1/viz.js'
+import * as helper from './scripts/viz1/helper.js'
+import * as legend from './scripts/viz1/legend.js'
+import * as tooltip from './scripts/viz1/tooltip.js'
 
 import d3Tip from 'd3-tip'
 
