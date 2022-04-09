@@ -1,116 +1,62 @@
-body {
-    font-family: 'Montserrat', 'sans-serif';
-    font-size: 16px;
-    background-color: #EBF2FA;
-    color: #898989;
-    margin: 0;
-    height: 100vh;
+.radar-chart {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-header {
-    background-color: #fff;
-    padding: 25px 100px;
-    margin: 0 25px 0 0;
-    border-width: 0 1px 1px 0; 
-    border-radius: 0 0 25px 0;
-    border-style: solid;
-    border-color: black;
-}
-
-main {
-    height: 100%;
-    padding-right: 25px;
-}
-
-h1 {
-    color: #EEB902;
-    font-family: 'Grenze Gotisch', 'serif';
-    font-size: 56px;
-    margin: 0;
-    font-weight: normal;
-}
-
-h2 {
-    font-weight: normal;
-}
-
-.main-svg {
-    background-color: #EBF2FA;
-}
-
-button {
-    padding: 10px 30px;
-    color: #000;
-    background-color: #fff;
-    border: 1px solid #333;
-    border-radius: 4px;
-    cursor: pointer;
-    outline: 0;
-    font-family: 'Helvetica', 'sans-serif';
-    font-size: 16px;
-}
-
-button:hover, button:active {
-	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-	background-color:#f6f6f6;
-}
-
-.title, .axis-text {
-    transform-origin: center;
-    transform-box: fill-box;
-    text-anchor: middle;
-}
-
-.viz-container{
-    height: 100%;
-    padding: 0 100px;
-}
-
-.graph {
+    flex-direction: row;
+    height: 600px;
     width: 100%;
-    height: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.panel {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 25px 100px;
-    margin: 0 25px 0 0;
-    border-width: 1px 1px 0 0; 
-    border-radius: 0 25px 0 0;
-    border-style: solid;
-    border-color: black;
+.tooltip {
+    position: fixed;
+    transition: all;
+    background-color: rgba(80, 80, 80, 1.0);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    opacity: 0;
+    max-width: 200px;
+    word-break: normal;
 }
 
-.legend-title {
-    font-weight: bold;
+.levels path {
+    fill: none;
+    stroke: #000;
 }
 
-.legend {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.grid-lines path {
+    stroke: coral;
 }
 
-.legend-element {
-    display: flex;
-    padding: 10px;
+.tick-lines path {
+    stroke: rgb(228, 16, 16);
+    stroke-width: 2px;
 }
 
-#tooltip-title {
-    font-family: 'Grenze Gotisch';
-    font-weight: normal;
-    font-size: 24px;
+.indicebaseline {
+    fill: rgb(255, 127, 80);
 }
 
-.tooltip-value {
-    font-weight: normal;
+.indiceNeymar {
+    fill: rgb(0, 0, 255);
+}
+
+.shapeBaseline path {
+    stroke: rgb(255, 127, 80);
+    fill: rgba(255, 127, 80);
+    opacity: 0.5;
+}
+
+.shapeNeymar path {
+    stroke: rgb(0, 0, 255);
+    fill: rgba(0, 0, 255);
+    opacity: 0.5;
+}
+
+.chart circle {
+    cursor: pointer;
+}
+
+.labels text {
+    cursor: pointer;
 }

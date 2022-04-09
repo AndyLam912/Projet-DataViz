@@ -1,26 +1,32 @@
+const tooltip = d3.select(".radar-chart .chart .tooltip");
+
+
 /**
  * Defines the contents of the tooltip.
  *
  * @param {object} d The data associated to the hovered element
  * @returns {string} The tooltip contents
  */
-export function getContents (d) {
-  /* TODO : Define and return the tooltip contents including :
-      + A title stating the hovered element's group, with:
-        - Font family: Grenze Gotish
-        - Font size: 24px
-        - Font weigth: normal
-      + A bold label for the player name followed
-        by the hovered elements's player's name
-      + A bold label for the player's line count
-        followed by the number of lines
-  */
- 
-    return `
-    <label id='tooltip-title'">Act ${d.Act}</label>
-    <br>
-    <br>
-    <span style="font-weight: bold;">Player:</span> <span class='tooltip-value'"> ${d.Player}</span> 
-    <br>
-    <span style="font-weight: bold;">Count:</span> <span class='tooltip-value'"> ${d.Count}</span>`
+export function getLabelsText(data) {
+  tooltip.style("opacity", 1);
+  const { x, y } = d3.event;
+  tooltip.style("top", `${y - 20}px`);
+  tooltip.style("left", `${x + 50}px`);
+  tooltip.text(data.tooltip);
+  tooltip.style("color", 'white');
+}
+
+
+export function getTipValue(data) {
+  tooltip.style("opacity", 1);
+  const { x, y } = d3.event;
+  tooltip.style("top", `${y - 20}px`);
+  tooltip.style("left", `${x + 15}px`);
+  tooltip.text(data.value);
+  tooltip.style("color", data.color);
+}
+
+
+export function removeTooltip() {
+  tooltip.style("opacity", 0);
 }

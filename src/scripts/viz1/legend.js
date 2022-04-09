@@ -1,36 +1,18 @@
-/**
- * Draws a legend in the area at the bottom of the screen, corresponding to the bars' colors
- *
- * @param {string[]} data The data to be used to draw the legend elements
- * @param {*} color The color scale used throughout the visualisation
- */
-export function draw (data, color) {
-  // TODO : Generate the legend in the div with class "legend". Each SVG rectangle
-  // should have a width and height set to 15.
-  // Tip : Append one div per legend element using class "legend-element".
-  const RECT_WIDTH = 15
-  const RECT_HEIGHT = 15
-  data.forEach(playerName => {
-    // Create a div with the class "legend-element"
-    const divElement = d3.select('.legend')
-    .append('div')
-    .attr('class', 'legend-element')
-    
-    // Create the colored rectangle
-    divElement
-    .append('svg')
-    .attr('width', RECT_WIDTH)
-    .attr('height', RECT_HEIGHT)
-    .style('margin', '0px 2px')
-    .append('rect')
-    .attr('width', RECT_WIDTH)
-    .attr('height', RECT_HEIGHT)
-    .style('fill', color(playerName))
-    .style('stroke', 'black')
-    
-    // Create the span to show the player's name 
-    divElement
-    .append('span')
-    .text(playerName)
+
+const Players = [{ player: 'Neymar', color: 'rgb(0,0,255)' }, { player: 'Baseline', color: 'rgb(255, 127, 80)' }];
+
+export function draw() {
+  var x_axis = 10;
+  var y_axis = 130;
+
+  var legend = d3.select(".radar-chart .legend")
+
+  Players.forEach(player => {
+    legend.append("circle").attr("cx", x_axis).attr("cy", y_axis).attr("r", 6).style("fill", player.color);
+    x_axis += 10;
+    legend.append("text").attr("x", x_axis).attr("y", y_axis).text(player.player).style("font-size", "15px").attr("alignment-baseline", "middle");
+
+    x_axis -= 10;
+    y_axis += 30;
   })
 }
