@@ -1,101 +1,46 @@
-'use strict'
+import * as viz1 from './scripts/viz1/radar-chart-viz.js'
+import * as preproc1 from './scripts/viz1/preprocess.js'
+import * as legend1 from './scripts/viz1/legend.js'
 
-import * as preproc from './scripts/viz1/preprocess.js'
-import * as viz from './scripts/viz1/viz.js'
-import * as helper from './scripts/viz1/helper.js'
-import * as legend from './scripts/viz1/legend.js'
-import * as tooltip from './scripts/viz1/tooltip.js'
+import * as viz2 from './scripts/viz2/multi-set-bar-chart-viz.js'
 
-import d3Tip from 'd3-tip'
 
-/**
- * @file This file is the entry-point for the the code for TP2 for the course INF8808.
- * @author Olivia Gélinas
- * @version v1.0.0
- */
+Promise.all([
+    d3.csv("./viz1.csv", d3.autoType),
+    d3.csv("./viz2.csv", d3.autoType),
+]).then(function(data) {
+  // data[0] will contain data from viz1.csv
+  // data[1] will contain data from viz2.csv
 
-(function (d3) {
-  const margin = { top: 80, right: 0, bottom: 80, left: 55 }
-  const barColors = ['#861388',
-    '#d4a0a7',
-    '#dbd053',
-    '#1b998b',
-    '#A0CED9',
-    '#3e6680']
+                            /* For the radar chart (vizualisation 1) */
+    var general_data = [];
 
-  let bounds
-  let svgSize
-  let graphSize
-
-  const xScale = d3.scaleBand().padding(0.15)
-  const xSubgroupScale = d3.scaleBand().padding([0.015])
-  const yScale = d3.scaleLinear()
-
-  const tip = d3Tip().attr('class', 'd3-tip').html(function (d) { return tooltip.getContents(d) })
-  d3.select('.main-svg').call(tip)
-
-  d3.csv('./romeo_and_juliet.csv').then(function (data) {
-    data = preproc.cleanNames(data)
-
-    const topPlayers = preproc.getTopPlayers(data)
-
-    data = preproc.summarizeLines(data)
-    data = preproc.replaceOthers(data, topPlayers)
-
-    topPlayers.push('Other')
-    topPlayers.sort((a, b) => a.localeCompare(b))
-
-    const g = helper.generateG(margin)
-
-    helper.appendAxes(g)
-    helper.appendGraphLabels(g)
-
-    const color = helper.defineColorScale(barColors, topPlayers)
-
-    legend.draw(topPlayers, color)
-
-    setSizing()
-    build(data, topPlayers)
-
-    /**
-     *   This function handles the graph's sizing.
-     */
-    function setSizing () {
-      bounds = d3.select('.graph').node().getBoundingClientRect()
-
-      svgSize = {
-        width: bounds.width,
-        height: 550
-      }
-
-      graphSize = {
-        width: svgSize.width - margin.right - margin.left,
-        height: svgSize.height - margin.bottom - margin.top
-      }
-
-      helper.setCanvasSize(svgSize.width, svgSize.height)
+    for (var i = 0; i < data[0].length; i++) {
+      general_data.push(data[0][i]);
     }
 
-    /**
-     *   This function builds the graph.
-     */
-    function build () {
-      helper.positionLabels(graphSize.width, graphSize.height)
+    var baseline = preproc1.createBaseline(general_data);
+    var neymar_data = preproc1.getNeymarData(general_data);
+    neymar_data, baseline = preproc1.roundStats(neymar_data, baseline);
 
-      viz.updateGroupXScale(xScale, data, graphSize.width)
-      helper.updateXSubgroupScale(xSubgroupScale, topPlayers, xScale)
-      viz.updateYScale(yScale, data, graphSize.height)
+    const ticks = viz1.genTicks();
+    const dataset_Neymar = preproc1.generateData(neymar_data, 6);
+    const dataset_Baseline = preproc1.generateData(baseline, 6);
 
-      helper.drawXAxis(xScale, graphSize.height)
-      helper.drawYAxis(yScale)
+    viz1.generateAndDrawLevels();
+    viz1.generateAndDrawLines();
+    viz1.drawAxis(ticks);
+    viz1.drawData(dataset_Baseline, dataset_Neymar);
+    viz1.drawLabels(dataset_Neymar);
+    legend1.draw();
+    /* -------------------------------------------------------------------------------------------------*/
 
-      viz.createGroups(data, xScale)
-      viz.drawBars(yScale, xSubgroupScale, topPlayers, graphSize.height, color, tip)
-    }
+                            /* For the multi set bar chart (vizualisation 2) */
+    viz2.addBars(data[1])
 
-    window.addEventListener('resize', () => {
-      setSizing()
-      build(data, topPlayers)
-    })
-  })
-})(d3)
+    /* -------------------------------------------------------------------------------------------------*/
+
+
+}).catch(function(err) {
+    console.log(err);
+})

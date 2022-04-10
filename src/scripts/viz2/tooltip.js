@@ -1,5 +1,4 @@
-const tooltip = d3.select(".radar-chart .chart .tooltip");
-
+const tooltip = d3.select(".multi-set-bar-chart .chart .tooltip");
 
 /**
  * Defines the contents of the tooltip.
