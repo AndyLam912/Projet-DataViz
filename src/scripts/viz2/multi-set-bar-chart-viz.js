@@ -13,14 +13,26 @@ var svg = d3.select("#bar-chart")
           "translate(" + margin.left + "," + margin.top + ")");
 
 export function addBars(data) {
+
+    const mouseEnterbar = d => {
+        var id = '#viz2-bar-' + d.value.toFixed().toString();
+        d3.select(id).select('rect').attr("height", ySubgroup.bandwidth() + 2);
+        d3.select(id).select('rect').attr("fill", function(d) { return hoverColor(d.key); });
+        d3.select(id).select('text').style("opacity", "1.0");
+    };
+
+    const mouseLeaveBar = d => {
+        var id = '#viz2-bar-' + d.value.toFixed().toString();
+        d3.select(id).select('rect').attr("height", ySubgroup.bandwidth() - 2);
+        d3.select(id).select('rect').attr("fill", function(d) { return color(d.key); });
+        d3.select(id).select('text').style("opacity", "0")
+    };
     
     // List of subgroups = header of the csv files = soil condition here
     var subgroups = data.columns.slice(1);
-    console.log(subgroups);
 
     // List of groups = species here = value of the first column called group -> I show them on the X axis
     var groups = d3.map(data, function(d){return(d.Group)}).keys();
-    console.log(groups)
 
     // Add X axis
     var x = d3.scaleLinear()
@@ -55,6 +67,10 @@ export function addBars(data) {
     var color = d3.scaleOrdinal()
         .domain(subgroups)
         .range(['#70ad47','#ffc000'])
+
+    var hoverColor = d3.scaleOrdinal()
+        .domain(subgroups)
+        .range(['#378805','#f79500'])
     
     // Show the bars
     svg.append("g")
@@ -64,13 +80,26 @@ export function addBars(data) {
         .enter()
         .append("g")
             .attr("transform", function(d) { return "translate(1, " + y(d.Group) + ")"; })
-        .selectAll("rect")
+        .selectAll("g")
         .data(function(d) { return subgroups.map(function(key) { return {key: key, value: d[key]}; }); })
-        .enter().append("rect")
-            .attr("x", x(0))
+        .enter()
+        .append("g").attr("class", 'viz2-bar').attr("id", function(d) { return ('viz2-bar-' + d.value.toFixed().toString());})
+        .append("rect").attr("x", x(0))
             .attr("y", function(d) { return ySubgroup(d.key); })
             .attr("width", function(d) { return x(d.value);})
             .attr("height", ySubgroup.bandwidth())
-            .attr("fill", function(d) { return color(d.key); });
-   
+            .attr("fill", function(d) { return color(d.key); })
+        .on("mouseenter", mouseEnterbar)
+        .on("mouseleave", mouseLeaveBar);
+
+    d3.selectAll('.viz2-bar').append('text')
+        .attr("x", function(d) { return (x(d.value)*0.99);})
+        .attr("y", function(d) { return (ySubgroup(d.key)+(ySubgroup.bandwidth()/2));})
+        .attr("dominant-baseline", "middle")
+        .attr("text-anchor", "end")
+        .attr("font-weight", "bold")
+        .attr("font-family", "sans-serif")
+        .attr("fill", "white")
+        .style("opacity", "0")
+        .text(function(d) { return d.value;})
 }
