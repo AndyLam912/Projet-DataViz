@@ -28,5 +28,6 @@ export function getTipValue(data) {
 
 
 export function removeTooltip() {
+  tooltip.text("");
   tooltip.style("opacity", 0);
 }
