@@ -1,0 +1,22 @@
+Player,Season,Age,Squad,Country,Comp,LgRank,90s,Gls,Sh,SoT,SoT%,Sh/90,SoT/90,G/Sh,G/SoT,Dist,FK,PK,PKatt,xG,npxG,npxG/Sh,G-xG,np:G-xG,Matches
+Neymar,2015-2016,23,Barcelona,es ESP,1. La Liga,1st,34,24,124,61,49.2,3.65,1.8,0.15,0.31,,,5,7,,,,,,Matches
+Neymar,2016-2017,24,Barcelona,es ESP,1. La Liga,2nd,29.4,13,105,42,40,3.57,1.43,0.11,0.29,,,1,1,,,,,,Matches
+Neymar,2017-2018,25,Paris S-G,fr FRA,1. Ligue 1,1st,19.8,19,87,38,43.7,4.38,1.91,0.17,0.39,17.7,15,4,4,15.4,12.4,0.15,3.6,2.6,Matches
+Neymar,2018-2019,26,Paris S-G,fr FRA,1. Ligue 1,1st,16,15,51,21,41.2,3.19,1.31,0.2,0.48,19.5,10,5,5,11.1,7.3,0.14,3.9,2.7,Matches
+Neymar,2019-2020,27,Paris S-G,fr FRA,1. Ligue 1,1st,14.6,13,64,31,48.4,4.37,2.12,0.14,0.29,17.6,10,4,5,12.7,8.9,0.14,0.3,0.1,Matches
+Neymar,2020-2021,28,Paris S-G,fr FRA,1. Ligue 1,2nd,15.7,9,64,16,25,4.07,1.02,0.06,0.25,18.9,18,5,6,12.3,7.7,0.13,-3.3,-3.7,Matches
+Neymar,2021-2022,29,Paris S-G,fr FRA,1. Ligue 1,1st,14.7,7,35,17,48.6,2.37,1.15,0.17,0.35,17.9,6,1,2,6.8,5.3,0.15,0.2,0.7,Matches
+Messi,2015-2016,28,Barcelona,es ESP,1. La Liga,1st,30.3,26,158,75,47.5,5.21,2.47,0.15,0.31,,,3,7,,,,,,Matches
+Messi,2016-2017,29,Barcelona,es ESP,1. La Liga,2nd,31.4,37,179,77,43,5.69,2.45,0.17,0.4,,,6,7,,,,,,Matches
+Messi,2017-2018,30,Barcelona,es ESP,1. La Liga,1st,33.3,34,194,94,48.5,5.82,2.82,0.16,0.34,18.4,47,2,4,25.3,22.3,0.12,8.7,9.7,Matches
+Messi,2018-2019,31,Barcelona,es ESP,1. La Liga,1st,30.1,36,167,85,50.9,5.54,2.82,0.19,0.38,19.4,41,4,5,23.4,19.7,0.12,12.6,12.3,Matches
+Messi,2019-2020,32,Barcelona,es ESP,1. La Liga,2nd,32,25,154,63,40.9,4.81,1.97,0.13,0.32,20.1,43,5,5,19.2,15.4,0.1,5.8,4.6,Matches
+Messi,2020-2021,33,Barcelona,es ESP,1. La Liga,3rd,33.6,30,190,85,44.7,5.66,2.53,0.14,0.32,18.8,40,3,5,23.6,19.5,0.1,6.4,7.5,Matches
+Messi,2021-2022,34,Paris S-G,fr FRA,1. Ligue 1,1st,16.9,3,64,18,28.1,3.78,1.06,0.05,0.17,18.5,13,0,0,7.1,7.1,0.11,-4.1,-4.1,Matches
+Ronaldo,2015-2016,30,Real Madrid,es ESP,1. La Liga,2nd,35.4,35,227,98,43.2,6.42,2.77,0.13,0.3,,,6,9,,,,,,Matches
+Ronaldo,2016-2017,31,Real Madrid,es ESP,1. La Liga,1st,28.2,25,162,61,37.7,5.74,2.16,0.12,0.31,,,6,8,,,,,,Matches
+Ronaldo,2017-2018,32,Real Madrid,es ESP,1. La Liga,3rd,25.4,26,176,71,40.3,6.93,2.8,0.13,0.32,14.8,15,3,4,24.2,21.1,0.12,1.8,1.9,Matches
+Ronaldo,2018-2019,33,Juventus,it ITA,1. Serie A,1st,29.9,21,170,62,36.5,5.69,2.08,0.09,0.26,17.9,17,5,6,22.7,18.1,0.11,-1.7,-2.1,Matches
+Ronaldo,2019-2020,34,Juventus,it ITA,1. Serie A,1st,32.4,31,196,67,34.2,6.05,2.07,0.1,0.28,18.8,18,12,13,26.7,16.8,0.09,4.3,2.2,Matches
+Ronaldo,2020-2021,35,Juventus,it ITA,1. Serie A,4th,31.1,29,162,60,37,5.2,1.93,0.14,0.38,17.6,17,6,8,26.5,20.4,0.13,2.5,2.6,Matches
+Ronaldo,2021-2022,36,Manchester Utd,eng ENG,1. Premier League,7th,21.3,12,86,30,34.9,4.04,1.41,0.12,0.33,14.4,5,2,2,13.3,11.8,0.14,-1.3,-1.8,Matches

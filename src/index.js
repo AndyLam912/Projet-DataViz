@@ -3,11 +3,13 @@ import * as preproc1 from './scripts/viz1/preprocess.js'
 import * as legend1 from './scripts/viz1/legend.js'
 
 import * as viz2 from './scripts/viz2/multi-set-bar-chart-viz.js'
+import * as viz3 from './scripts/viz3/connected-dot-plot-viz.js'
 
 
 Promise.all([
     d3.csv("./viz1.csv", d3.autoType),
     d3.csv("./viz2.csv", d3.autoType),
+    d3.csv('./viz3.csv', d3.autoType)
 ]).then(function(data) {
   // data[0] will contain data from viz1.csv
   // data[1] will contain data from viz2.csv
@@ -39,8 +41,11 @@ Promise.all([
     viz2.addBars(data[1])
 
     /* -------------------------------------------------------------------------------------------------*/
+                            /* For the multi set bar chart (vizualisation 2) */
 
+    viz3.createConnectedDotPlot(data[2])
 
+    /* -------------------------------------------------------------------------------------------------*/
 }).catch(function(err) {
     console.log(err);
 })
