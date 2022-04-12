@@ -42,6 +42,13 @@ const labels_text =
 const labels_tooltip = []
 
 
+export function DrawTitle(){
+    // Add Title
+    d3.select('.radar-chart-global .viz-title')
+      .attr("width", "100%")
+      .text('Neymar da Silva Santos Júnior')
+}
+
 
 export function generatePoint({ length, angle }) {
     const point =

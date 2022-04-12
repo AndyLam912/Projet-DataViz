@@ -3,7 +3,8 @@ import * as preproc1 from './scripts/viz1/preprocess.js'
 import * as legend1 from './scripts/viz1/legend.js'
 
 import * as viz2 from './scripts/viz2/multi-set-bar-chart-viz.js'
-
+import * as preproc2 from './scripts/viz2/preprocess.js'
+import * as legend2 from './scripts/viz2/legend.js'
 
 Promise.all([
     d3.csv("./viz1.csv", d3.autoType),
@@ -27,6 +28,7 @@ Promise.all([
     const dataset_Neymar = preproc1.generateData(neymar_data, 6);
     const dataset_Baseline = preproc1.generateData(baseline, 6);
 
+    viz1.DrawTitle();
     viz1.generateAndDrawLevels();
     viz1.generateAndDrawLines();
     viz1.drawAxis(ticks);
@@ -36,7 +38,11 @@ Promise.all([
     /* -------------------------------------------------------------------------------------------------*/
 
                             /* For the multi set bar chart (vizualisation 2) */
-    viz2.addBars(data[1])
+    const viz2_groups = preproc2.getGroups(data[1]);
+    const viz2_subgroups = preproc2.getSubGroups(data[1]);
+    viz2.DrawTitle();
+    viz2.addBars(data[1], viz2_groups, viz2_subgroups);
+    legend2.draw();
 
     /* -------------------------------------------------------------------------------------------------*/
 

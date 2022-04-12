@@ -1,38 +1,58 @@
-// set the dimensions and margins of the graph
-var margin = {top: 20, right: 30, bottom: 40, left: 90},
-    width = 700 - margin.left - margin.right,
+import * as tooltip from './tooltip.js'
+
+export function DrawTitle(){
+    // Add Title
+    d3.select('.multi-set-bar-chart .viz-title')
+      .attr("width", "100%")
+      .text('Perfomance de Neymar par rapport aux attentes')
+}
+
+export function addBars(data, groups, subgroups) {
+    // set the dimensions and margins of the graph
+    var margin = {top: 20, right: 30, bottom: 40, left: 90},
+    width = 900 - margin.left - margin.right,
     height = 560 - margin.top - margin.bottom;
 
-// append the svg object to the body of the page
-var svg = d3.select("#bar-chart")
-  .append("svg")
+    // append the svg object to the body of the page
+    var svg = d3.select("#bar-chart")
+    .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-  .append("g")
+    .append("g")
     .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+        "translate(" + margin.left + "," + margin.top + ")");
 
-export function addBars(data) {
+
+    const mouseEnterCategory = d => {
+        console.log(d);
+        d3.selectAll(".viz2-groups-axis .tick").style("cursor", "pointer");
+        tooltip.getGroupText(d); 
+    };
+
+    const mouseLeaveCategory = d => {
+        console.log(d);
+        d3.selectAll(".viz2-groups-axis .tick").style("cursor", "default");
+        tooltip.removeTooltip();
+    };
 
     const mouseEnterbar = d => {
         var id = '#viz2-bar-' + d.value.toFixed().toString();
-        d3.select(id).select('rect').attr("height", ySubgroup.bandwidth() + 2);
-        d3.select(id).select('rect').attr("fill", function(d) { return hoverColor(d.key); });
+        d3.select(id).select('rect')
+            .attr("height", ySubgroup.bandwidth() + 2)
+            .attr("fill", function(d) { return hoverColor(d.key); })
+            .style("cursor", "pointer"); 
         d3.select(id).select('text').style("opacity", "1.0");
     };
 
     const mouseLeaveBar = d => {
         var id = '#viz2-bar-' + d.value.toFixed().toString();
-        d3.select(id).select('rect').attr("height", ySubgroup.bandwidth() - 2);
-        d3.select(id).select('rect').attr("fill", function(d) { return color(d.key); });
+        d3.select(id).select('rect')
+            .attr("height", ySubgroup.bandwidth() - 2)
+            .attr("fill", function(d) { return color(d.key); })
+            .style("cursor", "default"); 
         d3.select(id).select('text').style("opacity", "0")
     };
-    
-    // List of subgroups = header of the csv files = soil condition here
-    var subgroups = data.columns.slice(1);
 
-    // List of groups = species here = value of the first column called group -> I show them on the X axis
-    var groups = d3.map(data, function(d){return(d.Group)}).keys();
 
     // Add X axis
     var x = d3.scaleLinear()
@@ -51,11 +71,17 @@ export function addBars(data) {
         .domain(groups)
         .range([ 0, height ])
         .padding(.3);
-    svg.append("g")
+    svg.append("g").attr('class', 'viz2-groups-axis')
         .call(d3.axisLeft(y))
         .selectAll("text")
             .style("font-size", "large")
             .style("font-weight", "500");
+
+
+    d3.selectAll(".viz2-groups-axis .tick")
+        .data(groups)
+        .on("mouseenter", mouseEnterCategory)
+        .on("mouseleave", mouseLeaveCategory);
 
     // Another scale for subgroup position?
     var ySubgroup = d3.scaleBand()
@@ -72,6 +98,7 @@ export function addBars(data) {
         .domain(subgroups)
         .range(['#378805','#f79500'])
     
+
     // Show the bars
     svg.append("g")
         .selectAll("g")
@@ -91,6 +118,7 @@ export function addBars(data) {
             .attr("fill", function(d) { return color(d.key); })
         .on("mouseenter", mouseEnterbar)
         .on("mouseleave", mouseLeaveBar);
+
 
     d3.selectAll('.viz2-bar').append('text')
         .attr("x", function(d) { return (x(d.value)*0.99);})

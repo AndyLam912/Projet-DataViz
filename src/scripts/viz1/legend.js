@@ -4,7 +4,11 @@ export function draw() {
   var x_axis = 10;
   var y_axis = 130;
 
-  var legend = d3.select(".radar-chart .legend")
+  var legend = d3.select(".radar-chart-global")
+    .append("svg")
+    .attr("class", "legend")
+    .attr("height", "300")
+    .attr("width", "100");
 
   Players.forEach(player => {
     legend.append("circle").attr("cx", x_axis).attr("cy", y_axis).attr("r", 6).style("fill", player.color);
