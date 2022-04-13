@@ -8,6 +8,10 @@ import * as legend2 from './scripts/viz2/legend.js'
 
 import * as viz3 from './scripts/viz3/connected-dot-plot-viz.js'
 
+import * as viz4 from './scripts/viz4/viz4.js'
+import * as preproc4 from './scripts/viz4/preprocess.js'
+import * as viz4tooltip from './scripts/viz4/tooltip.js'
+
 import * as viz5 from './scripts/viz5/multi-set-bar-chart-viz.js'
 import * as preproc5 from './scripts/viz5/preprocess.js'
 import * as legend5 from './scripts/viz5/legend.js'
@@ -21,6 +25,7 @@ Promise.all([
     d3.csv("./viz1.csv", d3.autoType),
     d3.csv("./viz2.csv", d3.autoType),
     d3.csv('./viz3.csv', d3.autoType),
+    d3.csv('./viz4.csv', d3.autoType),
     d3.csv("./viz5.csv", d3.autoType),
     d3.csv('./viz6.csv', d3.autoType)
 ]).then(function(data) {
@@ -63,10 +68,30 @@ Promise.all([
 
     viz3.createConnectedDotPlot(data[2])
 
+    /* -------------------------------------------------------------------------------------------------*/
+                            /* For the pie chart (vizualisation 4) */
+    const GCA_NEYMAR = preproc4.getPlayerEffectiveGCAPassData("Neymar", data[3]);
+    const GCA_MESSI = preproc4.getPlayerEffectiveGCAPassData("Messi", data[3]);
+    const GCA_RONALDO = preproc4.getPlayerEffectiveGCAPassData("Ronaldo", data[3]);
+    const SCA_NEYMAR = preproc4.getPlayerEffectiveSCAPassData("Neymar", data[3]);
+    const SCA_MESSI = preproc4.getPlayerEffectiveSCAPassData("Messi", data[3]);
+    const SCA_RONALDO = preproc4.getPlayerEffectiveSCAPassData("Ronaldo", data[3]);
+    const CMP_NEYMAR = preproc4.getPlayerCompletedPassData("Neymar", data[3]);
+    const CMP_MESSI = preproc4.getPlayerCompletedPassData("Messi", data[3]);
+    const CMP_RONALDO = preproc4.getPlayerCompletedPassData("Ronaldo", data[3]);
+    // SCA/GCA GCA/CMP CMP/ATP
+    viz4.drawTitle();
+    viz4.initialLoad([CMP_NEYMAR, CMP_MESSI, CMP_RONALDO]);
+    viz4.loadRadioButton([
+      [CMP_NEYMAR, CMP_MESSI, CMP_RONALDO],
+      [SCA_NEYMAR, SCA_MESSI, SCA_RONALDO],
+      [GCA_NEYMAR, GCA_MESSI, GCA_RONALDO]
+    ]);
+    viz4tooltip.showToolTip();
 
-
+    /* -------------------------------------------------------------------------------------------------*/
                                 /* For the multi set bar chart (vizualisation 5) */
-    var viz5_data = preproc5.FilterOutUnwantedData(data[3]);
+    var viz5_data = preproc5.FilterOutUnwantedData(data[4]);
     viz5_data = preproc5.CalculateBallControlStat(viz5_data);
     viz5_data = preproc5.ChangetoDecimal(viz5_data);
     const viz5_groups = preproc5.getGroups(viz5_data);
@@ -77,7 +102,7 @@ Promise.all([
 
     /* -------------------------------------------------------------------------------------------------*/
     /* For the Stacked Bar Chart (vizualisation 6) */
-    var filtered_data = preproc6.filterData(data[4]);
+    var filtered_data = preproc6.filterData(data[5]);
     var updated_data = preproc6.updateData(filtered_data);
     const viz6_groups = preproc6.getGroups(updated_data);
     const viz6_subgroups = preproc6.getSubGroups(updated_data);
