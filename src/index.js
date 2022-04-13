@@ -3,18 +3,19 @@ import * as preproc1 from './scripts/viz1/preprocess.js'
 import * as legend1 from './scripts/viz1/legend.js'
 
 import * as viz2 from './scripts/viz2/multi-set-bar-chart-viz.js'
-import * as viz3 from './scripts/viz3/connected-dot-plot-viz.js'
-import * as viz6 from './scripts/viz6/stacked-bar-chart-viz.js'
-
-
 import * as preproc2 from './scripts/viz2/preprocess.js'
-import * as preproc6 from './scripts/viz6/preprocess.js'
-
 import * as legend2 from './scripts/viz2/legend.js'
+
+import * as viz3 from './scripts/viz3/connected-dot-plot-viz.js'
 
 import * as viz5 from './scripts/viz5/multi-set-bar-chart-viz.js'
 import * as preproc5 from './scripts/viz5/preprocess.js'
 import * as legend5 from './scripts/viz5/legend.js'
+
+import * as viz6 from './scripts/viz6/stacked-bar-chart-viz.js'
+import * as preproc6 from './scripts/viz6/preprocess.js'
+import * as legend6 from './scripts/viz6/legend.js'
+
 
 Promise.all([
     d3.csv("./viz1.csv", d3.autoType),
@@ -68,11 +69,8 @@ Promise.all([
     var viz5_data = preproc5.FilterOutUnwantedData(data[3]);
     viz5_data = preproc5.CalculateBallControlStat(viz5_data);
     viz5_data = preproc5.ChangetoDecimal(viz5_data);
-    console.log(viz5_data);
     const viz5_groups = preproc5.getGroups(viz5_data);
-    console.log(viz5_groups);
     const viz5_subgroup = preproc5.getSubGroups(viz5_data);
-    console.log(viz5_subgroup);
     viz5.DrawTitle();
     viz5.addBars(viz5_data, viz5_groups, viz5_subgroup);
     legend5.draw();
@@ -85,6 +83,7 @@ Promise.all([
     const viz6_subgroups = preproc6.getSubGroups(updated_data);
 
     viz6.addBars(updated_data, viz6_groups, viz6_subgroups);
+    legend6.draw();
     /* -------------------------------------------------------------------------------------------------*/
 }).catch(function(err) {
     console.log(err);

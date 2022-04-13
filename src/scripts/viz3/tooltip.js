@@ -14,7 +14,7 @@ export function getValueText(data, playerName, pos ) {
   .style("left", `${pos.x + 32}px`)
   .style("color", 'white');
 
-  tooltip.append('p')
+  tooltip.append('h3').append('u')
   .style('margin', '4px')
   .text(`${playerName}`)
   

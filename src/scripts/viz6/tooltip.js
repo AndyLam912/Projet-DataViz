@@ -1,4 +1,6 @@
-const tooltip = d3.select(".multi-set-bar-chart .chart .tooltip");
+
+
+const tooltip = d3.select(".stacked-bar-chart .tooltip");
 
 /**
  * Defines the contents of the tooltip.
@@ -6,24 +8,41 @@ const tooltip = d3.select(".multi-set-bar-chart .chart .tooltip");
  * @param {object} d The data associated to the hovered element
  * @returns {string} The tooltip contents
  */
-
-const GROUPS_HEPLER = {
-  "(+/-)": "La  statistique plus/minus est utilisée pour mesurer l'impact d'un joueur sur le jeu. Elle est calculée en prenant la valeur du nombre de buts effectué par l’équipe (onG) et le soustrayant par le nombre de buts alloué par l’équipe (onGA) lorsque le joueur est sur le terrain. Cette valeur est comparée par le succès d’équipe attendue (onxG soustrait avec onxGA), soit xG+/-. ", 
-  "Assists": "Le nombre d'assists au buts commis par Neymar (Ast) comparé au nombre d'assists attendu de sa part (xA)",
-  "Goals": "Le nombre de buts total commis par Neymar (Gls) comparé au nombre de buts attendus par le joueur (xG)",
-};
-
-
-export function getGroupText(key) {
-  tooltip.style("opacity", 1);
+export function getBarValues(data) {
   const { x, y } = d3.event;
-  tooltip.style("top", `${y - 20}px`);
-  tooltip.style("left", `${x + 50}px`);
-  tooltip.text(GROUPS_HEPLER[key]);
-  tooltip.style("color", 'white');
+  tooltip.style("opacity", 1)
+  .style("top", `${y + 10}px`)
+  .style("left", `${x + 10}px`)
+  .style("color", 'white');
+
+  tooltip.append('h3').append('u')
+  .style('margin', '4px')
+  .text(`${data.data.Player}`)
+  
+  tooltip.append('p')
+  .style('margin', '4px')
+  .text(`Avertissements : ${data.data.Warning} ${formatData(data,data.data.Warning)}`)
+
+  tooltip.append('p')
+  .style('margin', '4px')
+  .text(`Cartons Jaunes : ${data.data.CrdY} ${formatData(data,data.data.CrdY)}`)
+
+  tooltip.append('p')
+  .style('margin', '4px')
+  .text(`Cartons Rouges : ${data.data.CrdR} ${formatData(data,data.data.CrdR)}`)
+
 }
+
+function formatData(data, element) { 
+  let total = data.data.Warning + data.data.CrdY + data.data.CrdR;
+  let pourcentage  = (element/total)*100
+  return `(${pourcentage.toFixed(2)} %)`
+}
+
 
 export function removeTooltip() {
   tooltip.text("");
   tooltip.style("opacity", 0);
 }
+
+
