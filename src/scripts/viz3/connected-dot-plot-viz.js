@@ -3,7 +3,7 @@ import * as preproc from './preprocess.js'
 import * as helper from './helper.js'
 import * as tooltip from './tooltip.js'
 import * as constant from '../constants.js'
-
+import * as legend from './legend.js'
 
 export function createConnectedDotPlot(data) { 
     const margin = { top: 40, right: 100, bottom: 40, left: 100 }
@@ -14,6 +14,13 @@ export function createConnectedDotPlot(data) {
     let dataProcessed = preproc.preprocessData(data)
     let allSeasons = preproc.getAllSeasonSorted(data)
 
+    let playerColors = [
+      {player: 'Neymar', color: constant.NEYMAR_COLOR}, 
+      {player: 'Ronaldo', color: constant.RONALDO_COLOR},
+      {player: 'Messi' , color: constant.MESSI_COLOR}
+    ]
+
+    legend.draw(playerColors)
 
     let svg =  d3.select("#connected-dot-plot")
     .append("svg")
