@@ -6,9 +6,14 @@ import * as viz2 from './scripts/viz2/multi-set-bar-chart-viz.js'
 import * as preproc2 from './scripts/viz2/preprocess.js'
 import * as legend2 from './scripts/viz2/legend.js'
 
+import * as viz5 from './scripts/viz5/multi-set-bar-chart-viz.js'
+import * as preproc5 from './scripts/viz5/preprocess.js'
+import * as legend5 from './scripts/viz5/legend.js'
+
 Promise.all([
     d3.csv("./viz1.csv", d3.autoType),
     d3.csv("./viz2.csv", d3.autoType),
+    d3.csv("./viz5.csv", d3.autoType),
 ]).then(function(data) {
   // data[0] will contain data from viz1.csv
   // data[1] will contain data from viz2.csv
@@ -46,7 +51,19 @@ Promise.all([
 
     /* -------------------------------------------------------------------------------------------------*/
 
-
+                            /* For the multi set bar chart (vizualisation 5) */
+    var viz5_data = preproc5.FilterOutUnwantedData(data[2]);
+    viz5_data = preproc5.CalculateBallControlStat(viz5_data);
+    viz5_data = preproc5.ChangetoDecimal(viz5_data);
+    console.log(viz5_data);
+    const viz5_groups = preproc5.getGroups(viz5_data);
+    console.log(viz5_groups);
+    const viz5_subgroup = preproc5.getSubGroups(viz5_data);
+    console.log(viz5_subgroup);
+    viz5.DrawTitle();
+    viz5.addBars(viz5_data, viz5_groups, viz5_subgroup);
+    legend5.draw();
+    /* -------------------------------------------------------------------------------------------------*/
 }).catch(function(err) {
     console.log(err);
 })
