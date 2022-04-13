@@ -4,14 +4,19 @@ import * as legend1 from './scripts/viz1/legend.js'
 
 import * as viz2 from './scripts/viz2/multi-set-bar-chart-viz.js'
 import * as viz3 from './scripts/viz3/connected-dot-plot-viz.js'
+import * as viz6 from './scripts/viz6/stacked-bar-chart-viz.js'
+
 
 import * as preproc2 from './scripts/viz2/preprocess.js'
+import * as preproc6 from './scripts/viz6/preprocess.js'
+
 import * as legend2 from './scripts/viz2/legend.js'
 
 Promise.all([
     d3.csv("./viz1.csv", d3.autoType),
     d3.csv("./viz2.csv", d3.autoType),
-    d3.csv('./viz3.csv', d3.autoType)
+    d3.csv('./viz3.csv', d3.autoType),
+    d3.csv('./viz6.csv', d3.autoType)
 ]).then(function(data) {
   // data[0] will contain data from viz1.csv
   // data[1] will contain data from viz2.csv
@@ -53,6 +58,15 @@ Promise.all([
     viz3.createConnectedDotPlot(data[2])
 
     /* -------------------------------------------------------------------------------------------------*/
+                            /* For the Stacked Bar Chart (vizualisation 6) */
+    var filtered_data = preproc6.filterData(data[3]);
+    var updated_data = preproc6.updateData(filtered_data);
+
+    const viz6_groups = preproc6.getGroups(updated_data);
+    const viz6_subgroups = preproc6.getSubGroups(updated_data);
+
+    viz6.addBars(updated_data, viz6_groups, viz6_subgroups);
+    
 }).catch(function(err) {
     console.log(err);
 })
