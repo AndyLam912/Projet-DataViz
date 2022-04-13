@@ -44,8 +44,7 @@ export function createConnectedDotPlot(data) {
     .attr('class', 'graphConnectedDotPlot')
     
     var lineGenerator = d3.line()
-
-
+    
     graphG
     .selectAll('.gridline')
     .data(xScale.ticks())

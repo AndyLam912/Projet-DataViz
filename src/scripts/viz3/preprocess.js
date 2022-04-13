@@ -2,7 +2,6 @@
 export function preprocessData (data) { 
     
     let groupedData = d3.group(data, d => d.Season)
-    //let groupedData = _.groupBy(data, 'Season', clist => clist.map(season => _.omit(season, 'Season')))
     let listSeasonsScores = []
     groupedData.forEach(element => {
         console.log(element)
