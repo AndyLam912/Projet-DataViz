@@ -1,3 +1,5 @@
+
+
 const tooltip = d3.select("#connected-dot-plot .tooltip");
 
 /**
@@ -6,27 +8,35 @@ const tooltip = d3.select("#connected-dot-plot .tooltip");
  * @param {object} d The data associated to the hovered element
  * @returns {string} The tooltip contents
  */
-export function getLabelsText(data) {
-  tooltip.style("opacity", 1);
-  const { x, y } = d3.event;
-  tooltip.style("top", `${y - 20}px`);
-  tooltip.style("left", `${x + 50}px`);
-  tooltip.text(" Gls/SoT : " + data);
-  tooltip.style("color", 'white');
+export function getValueText(data, playerName, pos ) {
+  tooltip.style("opacity", 1)
+  .style("top", `${pos.y + 10}px`)
+  .style("left", `${pos.x + 32}px`)
+  .style("color", 'white');
+
+  tooltip.append('p')
+  .style('margin', '4px')
+  .text(`${playerName}`)
+  
+  tooltip.append('p')
+  .style('margin', '4px')
+  .text(`Saison : ${data.Season}`)
+
+  tooltip.append('p')
+  .style('margin', '4px')
+  .text(" Gls/SoT : " + formatData(data[playerName]))
+
 }
 
-
-export function getTipValue(data) {
-  tooltip.style("opacity", 1);
-  const { x, y } = d3.event;
-  tooltip.style("top", `${y - 20}px`);
-  tooltip.style("left", `${x + 15}px`);
-  tooltip.text(data.value);
-  tooltip.style("color", data.color);
+function formatData(value) { 
+  let percentageValue = value*100
+  return `${percentageValue.toFixed(2)} %`
 }
 
 
 export function removeTooltip() {
+  tooltip.text("");
   tooltip.style("opacity", 0);
 }
+
 
