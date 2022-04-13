@@ -60,16 +60,14 @@ Promise.all([
     const CMP_NEYMAR = preproc4.getPlayerCompletedPassData("Neymar", data[2]);
     const CMP_MESSI = preproc4.getPlayerCompletedPassData("Messi", data[2]);
     const CMP_RONALDO = preproc4.getPlayerCompletedPassData("Ronaldo", data[2]);
-
-    console.log(CMP_NEYMAR)
     // SCA/GCA GCA/CMP CMP/ATP
-    viz4.initialLoad([SCA_NEYMAR, SCA_MESSI, SCA_RONALDO]);
-
-    function test() {
-      viz4.initialLoad([CMP_NEYMAR, CMP_MESSI, CMP_RONALDO]);
-    }
-    setTimeout(test, 4000);
-    
+    viz4.drawTitle();
+    viz4.initialLoad([CMP_NEYMAR, CMP_MESSI, CMP_RONALDO]);
+    viz4.loadRadioButton([
+      [CMP_NEYMAR, CMP_MESSI, CMP_RONALDO],
+      [SCA_NEYMAR, SCA_MESSI, SCA_RONALDO],
+      [GCA_NEYMAR, GCA_MESSI, GCA_RONALDO]
+    ]);
     /* -------------------------------------------------------------------------------------------------*/
 
 }).catch(function(err) {

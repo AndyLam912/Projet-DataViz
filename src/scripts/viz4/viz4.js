@@ -6,11 +6,23 @@ WIDTH = 250,
 HEIGHT = 250,
 RADIUS = Math.min(WIDTH, HEIGHT) / 2;
 
-export function DrawTitle(){
+export function drawTitle(){
     // Add Title
-    d3.select('.multi-set-bar-chart .viz-title')
-      .attr("width", "100%")
-      .text('Perfomance de Neymar par rapport aux attentes')
+    const TITLE = ['Neymar', 'Messi', 'Ronaldo']
+    for (let i = 0; i < TITLE.length; i++) {
+        d3
+        .select('#viz-title-' + i)
+        .text(TITLE[i]);
+    }
+}
+
+export function loadRadioButton(datasets) {
+    d3
+    .selectAll("#radio-button input")
+    .on("change", function() {
+        console.log(this.value)
+        update(datasets[(this.value == "cmp") ? 0 : (this.value == "sca") ? 1 : 2])
+    })
 }
 
 export function initialLoad(dataset) {
@@ -19,8 +31,8 @@ export function initialLoad(dataset) {
         var svg = d3
         .select("#pie-chart-" + i)
         .append("svg")
-        .attr("width", WIDTH + MARGIN.left + MARGIN.right)
-        .attr("height", HEIGHT + MARGIN.top + MARGIN.bottom)
+        .attr("width", WIDTH)
+        .attr("height", HEIGHT)
         .append("g")
         .attr(
             "transform",

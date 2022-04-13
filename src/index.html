@@ -28,18 +28,28 @@
               <div class="tooltip"></div>
             </div>
           </div>
-          <div class="viz-title"></div>
-          <div class="pie-chart" id="pie-chart-0">
-            <div class="tooltip"></div>
-          </div>
-          <div class="viz-title"></div>
-          <div class="pie-chart" id="pie-chart-1">
-            <div class="tooltip"></div>
-          </div>
-          <div class="viz-title"></div>
-          <div class="pie-chart" id="pie-chart-2">
-            <div class="tooltip"></div>
-          </div>
+          <div class="pie-chart">
+            <div id="pie-chart-0">
+              <div class="viz-title" id="viz-title-0"></div>
+              <div class="tooltip"></div>
+            </div>
+            <div id="pie-chart-1">
+              <div class="viz-title" id="viz-title-1"></div>
+              <div class="tooltip"></div>
+            </div>
+            <div id="pie-chart-2">
+              <div class="viz-title" id="viz-title-2"></div>
+              <div class="tooltip"></div>
+            </div>
+         </div>
+        <div id="radio-button">
+          <input class="radio-button" type="radio" id="radio-button-0" name="viz4" value="cmp" checked="true">
+          <label for="radio-button-0" class="radio-label">Completed Pass Ratio</label>
+          <input class="radio-button" type="radio" id="radio-button-1" name="viz4" value="gca">
+          <label for="radio-button-1" class="radio-label">GCA Pass Ratio</label>
+          <input class="radio-button" type="radio" id="radio-button-2" name="viz4" value="sca">
+          <label for="radio-button-2" class="radio-label">SCA Pass Ratio</label>
+         </div>
           <script src="https://d3js.org/d3.v5.js"></script>
           <script src="./index.js"></script>
         </body>
