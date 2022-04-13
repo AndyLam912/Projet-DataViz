@@ -1,5 +1,3 @@
-const tooltip = d3.select(".multi-set-bar-chart .chart .tooltip");
-
 /**
  * Defines the contents of the tooltip.
  *
@@ -7,23 +5,56 @@ const tooltip = d3.select(".multi-set-bar-chart .chart .tooltip");
  * @returns {string} The tooltip contents
  */
 
-const GROUPS_HEPLER = {
-  "(+/-)": "La  statistique plus/minus est utilisée pour mesurer l'impact d'un joueur sur le jeu. Elle est calculée en prenant la valeur du nombre de buts effectué par l’équipe (onG) et le soustrayant par le nombre de buts alloué par l’équipe (onGA) lorsque le joueur est sur le terrain. Cette valeur est comparée par le succès d’équipe attendue (onxG soustrait avec onxGA), soit xG+/-. ", 
-  "Assists": "Le nombre d'assists au buts commis par Neymar (Ast) comparé au nombre d'assists attendu de sa part (xA)",
-  "Goals": "Le nombre de buts total commis par Neymar (Gls) comparé au nombre de buts attendus par le joueur (xG)",
-};
+const GROUPS_HEPLER = [
+  "La statistique mesure la performance au niveau des passes du joueur. Elle est calculée en prenant le ratio Nombre de passes complétées / Nombre de tentatives de passes.", 
+  "La statistique mesure la performance des passes complétées. Elle est calculée en prenant le ratio Nombre de passes qui a mené à un tir / Nombre de passes complétées.",
+  "La statistique mesure la performance des passes de type SCA. Elle est calculée en prenant le ratio Nombre de passes qui a mené à un but / Nombre de passes qui a mené à un tir."
+];
 
+const tooltip = d3.select("#radio-button .tooltip");
+const region_tooltip = d3.select(".pie-chart .tooltip");
 
-export function getGroupText(key) {
+function getTooltipText(key) {
   tooltip.style("opacity", 1);
   const { x, y } = d3.event;
-  tooltip.style("top", `${y - 20}px`);
-  tooltip.style("left", `${x + 50}px`);
+  tooltip.style("top", `${y - 150}px`);
+  tooltip.style("left", `${x}px`);
   tooltip.text(GROUPS_HEPLER[key]);
   tooltip.style("color", 'white');
+}
+
+export function getRegionTooltipText(text) {
+  region_tooltip.style("opacity", 1);
+  const { x, y } = d3.event;
+  region_tooltip.style("top", `${y - 20}px`);
+  region_tooltip.style("left", `${x}px`);
+  region_tooltip.text(text);
+  region_tooltip.style("color", 'white');
+}
+
+export function showToolTip() {
+  for (let i = 0; i < 3; i++) {
+    d3
+    .select("#Capa_" + i)
+    .style("cursor", "pointer")
+    .on("mouseenter", function() { d3.select("#Capa_" + i).attr("style", "fill: silver"); getTooltipText(i); })
+    .on("mouseleave", function() { d3.select("#Capa_" + i).attr("style", "fill: black"); removeTooltip(); });
+  }
+}
+
+export function showRegionToolTip(slice, text) {
+  slice
+  .style("cursor", "pointer")
+  .on("mouseenter", function() { getRegionTooltipText(text); })
+  .on("mouseleave", function() { removeRegionToolTip(); });
 }
 
 export function removeTooltip() {
   tooltip.text("");
   tooltip.style("opacity", 0);
+}
+
+export function removeRegionToolTip() {
+  region_tooltip.text("");
+  region_tooltip.style("opacity", 0);
 }

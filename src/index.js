@@ -8,6 +8,7 @@ import * as legend2 from './scripts/viz2/legend.js'
 
 import * as viz4 from './scripts/viz4/viz4.js'
 import * as preproc4 from './scripts/viz4/preprocess.js'
+import * as viz4tooltip from './scripts/viz4/tooltip.js'
 
 Promise.all([
     d3.csv("./viz1.csv", d3.autoType),
@@ -68,6 +69,7 @@ Promise.all([
       [SCA_NEYMAR, SCA_MESSI, SCA_RONALDO],
       [GCA_NEYMAR, GCA_MESSI, GCA_RONALDO]
     ]);
+    viz4tooltip.showToolTip();
     /* -------------------------------------------------------------------------------------------------*/
 
 }).catch(function(err) {

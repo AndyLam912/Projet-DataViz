@@ -135,6 +135,7 @@ div[id^="radio-button-"] {
     margin-left: 5%;
 }
 
-.radio-label {
-    margin-right: 1%;
+.helpicon {
+    margin-left: 0.3%;
+    margin-right: 3%;
 }

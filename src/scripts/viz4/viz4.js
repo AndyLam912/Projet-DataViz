@@ -1,4 +1,4 @@
-import * as tooltip from './tooltip.js'
+import {getRegionTooltipText, removeRegionToolTip} from './tooltip.js'
 
 // set the dimensions and margins of the pie chart
 const MARGIN = {top: 20, right: 30, bottom: 40, left: 90},
@@ -70,6 +70,7 @@ export function update(newDataSet) {
     for (let i = 0; i < newDataSet.length; i++) {
         // CONST variable
         const DURATION = 1000;
+        const TOTAL = newDataSet[i][0].value + newDataSet[i][1].value;
 
         // local function instanciation
         var key = function(d) { return d.data.label; };
@@ -141,6 +142,13 @@ export function update(newDataSet) {
         slice = d3
         .select("#slice-" + i)
         .selectAll("path")
-        .data(pie(newDataSet[i]), key);
+        .data(pie(newDataSet[i]), key)
+        .style("cursor", "pointer")
+        .on("mouseenter", function(d) {
+            getRegionTooltipText(d.data.value + " (" + parseFloat(d.data.value/TOTAL * 100).toFixed(2) + "%)");
+        })
+        .on("mouseleave", function(d) {
+            removeRegionToolTip();
+        });
     }
 }
