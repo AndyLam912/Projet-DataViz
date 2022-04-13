@@ -12,10 +12,15 @@ import * as preproc6 from './scripts/viz6/preprocess.js'
 
 import * as legend2 from './scripts/viz2/legend.js'
 
+import * as viz5 from './scripts/viz5/multi-set-bar-chart-viz.js'
+import * as preproc5 from './scripts/viz5/preprocess.js'
+import * as legend5 from './scripts/viz5/legend.js'
+
 Promise.all([
     d3.csv("./viz1.csv", d3.autoType),
     d3.csv("./viz2.csv", d3.autoType),
     d3.csv('./viz3.csv', d3.autoType),
+    d3.csv("./viz5.csv", d3.autoType),
     d3.csv('./viz6.csv', d3.autoType)
 ]).then(function(data) {
   // data[0] will contain data from viz1.csv
@@ -53,20 +58,34 @@ Promise.all([
     legend2.draw();
 
     /* -------------------------------------------------------------------------------------------------*/
-                            /* For the multi set bar chart (vizualisation 2) */
+                            /* For the multi set bar chart (vizualisation 3) */
 
     viz3.createConnectedDotPlot(data[2])
 
-    /* -------------------------------------------------------------------------------------------------*/
-                            /* For the Stacked Bar Chart (vizualisation 6) */
-    var filtered_data = preproc6.filterData(data[3]);
-    var updated_data = preproc6.updateData(filtered_data);
 
+
+                                /* For the multi set bar chart (vizualisation 5) */
+    var viz5_data = preproc5.FilterOutUnwantedData(data[3]);
+    viz5_data = preproc5.CalculateBallControlStat(viz5_data);
+    viz5_data = preproc5.ChangetoDecimal(viz5_data);
+    console.log(viz5_data);
+    const viz5_groups = preproc5.getGroups(viz5_data);
+    console.log(viz5_groups);
+    const viz5_subgroup = preproc5.getSubGroups(viz5_data);
+    console.log(viz5_subgroup);
+    viz5.DrawTitle();
+    viz5.addBars(viz5_data, viz5_groups, viz5_subgroup);
+    legend5.draw();
+
+    /* -------------------------------------------------------------------------------------------------*/
+    /* For the Stacked Bar Chart (vizualisation 6) */
+    var filtered_data = preproc6.filterData(data[4]);
+    var updated_data = preproc6.updateData(filtered_data);
     const viz6_groups = preproc6.getGroups(updated_data);
     const viz6_subgroups = preproc6.getSubGroups(updated_data);
 
     viz6.addBars(updated_data, viz6_groups, viz6_subgroups);
-    
+    /* -------------------------------------------------------------------------------------------------*/
 }).catch(function(err) {
     console.log(err);
 })
