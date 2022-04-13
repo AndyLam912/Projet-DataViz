@@ -1,4 +1,5 @@
 const tooltip = d3.select(".radar-chart .chart .tooltip");
+import * as constants from '../constants.js'
 
 
 /**
@@ -18,6 +19,10 @@ export function getLabelsText(data) {
 
 
 export function getTipValue(data) {
+  if(data.color === constants.NEYMAR_COLOR){
+    data.color = 'lightgreen';
+  }
+
   tooltip.style("opacity", 1);
   const { x, y } = d3.event;
   tooltip.style("top", `${y - 20}px`);

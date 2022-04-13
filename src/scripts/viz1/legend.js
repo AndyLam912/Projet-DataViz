@@ -1,4 +1,6 @@
-const Players = [{ player: 'Neymar', color: 'rgb(0,0,255)' }, { player: 'Baseline', color: 'rgb(255, 127, 80)' }];
+import * as constants from '../constants.js'
+
+const Players = [{ player: 'Neymar', color: constants.NEYMAR_COLOR }, { player: 'Baseline', color: constants.ORANGE }];
 
 export function draw() {
   var x_axis = 10;

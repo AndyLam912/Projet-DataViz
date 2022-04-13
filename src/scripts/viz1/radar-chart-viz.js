@@ -1,4 +1,5 @@
 import * as tooltip from './tooltip.js'
+import * as constants from '../constants.js'
 
 
 const NUM_OF_SIDES = 6;
@@ -65,8 +66,18 @@ export function drawPath(points, parent) {
         .x(d => d.x)
         .y(d => d.y);
 
-    parent.append("path")
-        .attr("d", lineGenerator(points));
+    var keys = Object.keys(points[0]);
+
+    if(keys.includes('color') === true){
+        parent.append("path")
+        .attr("d", lineGenerator(points))
+        .attr("fill", points[0]['color'])
+        .attr("stroke", points[0]['color'])
+        .attr("opacity", 0.5)
+    }else{
+        parent.append("path")
+        .attr("d", lineGenerator(points))
+    }
 };
 
 
@@ -198,6 +209,7 @@ export function drawCircles(points, n) {
     if (n === 0) {
         g.append("g")
             .attr("class", "indicebaseline")
+            .attr("fill", constants.ORANGE)
             .selectAll("circle")
             .data(points)
             .enter()
@@ -210,6 +222,7 @@ export function drawCircles(points, n) {
     } else {
         g.append("g")
             .attr("class", "indiceNeymar")
+            .attr("fill", constants.NEYMAR_COLOR)
             .selectAll("circle")
             .data(points)
             .enter()
@@ -225,7 +238,7 @@ export function drawCircles(points, n) {
 
 export function drawData(dataset, dataset2) {
     const mouseEnterBaseline = d => {
-        d3.select(".shapeBaseline path").style("opacity", 0.90);
+        d3.select(".shapeBaseline path").style("opacity", 0.9);
     };
 
     const mouseLeaveBaseline = d => {
@@ -233,7 +246,7 @@ export function drawData(dataset, dataset2) {
     };
 
     const mouseEnterNeymar = d => {
-        d3.select(".shapeNeymar path").style("opacity", 0.90);
+        d3.select(".shapeNeymar path").style("opacity", 0.9);
     };
 
     const mouseLeaveNeymar = d => {
@@ -249,10 +262,12 @@ export function drawData(dataset, dataset2) {
             {
                 ...generatePoint({ length: len, angle: theta }),
                 value: d.value,
-                color: 'orange'
+                color: constants.ORANGE
             });
     });
-    const group = g.append("g").attr("class", "shapeBaseline").on("mouseenter", mouseEnterBaseline).on("mouseleave", mouseLeaveBaseline);
+    const group = g.append("g").attr("class", "shapeBaseline")
+        .on("mouseenter", mouseEnterBaseline)
+        .on("mouseleave", mouseLeaveBaseline);
     drawPath([...points, points[0]], group);
 
     var points1 = [];
@@ -264,10 +279,12 @@ export function drawData(dataset, dataset2) {
             {
                 ...generatePoint({ length: len, angle: theta }),
                 value: d.value,
-                color: 'cyan'
+                color: constants.NEYMAR_COLOR
             });
     });
-    var group1 = g.append("g").attr("class", "shapeNeymar").on("mouseenter", mouseEnterNeymar).on("mouseleave", mouseLeaveNeymar);;
+    var group1 = g.append("g").attr("class", "shapeNeymar")
+        .on("mouseenter", mouseEnterNeymar)
+        .on("mouseleave", mouseLeaveNeymar);
     drawPath([...points1, points1[0]], group1);
 
     drawCircles(points, 0);

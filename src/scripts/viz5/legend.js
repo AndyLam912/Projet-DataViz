@@ -1,6 +1,8 @@
-const SubGroups = [{ SubGroup: 'Successful Pass Reception (%)', color: '#aeaeae'}, 
-                { SubGroup: 'Successful Dribbles (%)', color: '#ffc000'},
-                { SubGroup: 'Successful Control of The Ball (%)', color: '#187bcd'}];
+import * as constants from '../constants.js'
+
+const SubGroups = [{ SubGroup: 'Successful Pass Reception (%)', color: constants.GRAY}, 
+                { SubGroup: 'Successful Dribbles (%)', color: constants.ORANGE},
+                { SubGroup: 'Successful Control of The Ball (%)', color: constants.BLUE}];
 
 export function draw() {
   var x_axis = 150;

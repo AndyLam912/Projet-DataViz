@@ -1,5 +1,7 @@
-const Players = [{ player: 'Statistiques de Neymar', color: 'rgb(54,185,67)'}, 
-                { player: 'Statistiques attendues', color: 'rgb(255, 199, 11)'}];
+import * as constants from '../constants.js'
+
+const SubGroups = [{ SubGroup: 'Statistiques de Neymar', color: constants.NEYMAR_COLOR}, 
+                { SubGroup: 'Statistiques attendues', color: constants.ORANGE}];
 
 export function draw() {
   var x_axis = 150;
@@ -12,10 +14,10 @@ export function draw() {
     .attr("height", "30")
     .attr("width", "600");
 
-  Players.forEach(player => {
-    legend.append("rect").attr("x", x_axis).attr("y", rect_y_axis).attr("width", 15).attr("height", 15).attr("fill", player.color);
+    SubGroups.forEach(SubGroup => {
+    legend.append("rect").attr("x", x_axis).attr("y", rect_y_axis).attr("width", 15).attr("height", 15).attr("fill", SubGroup.color);
     x_axis += 20;
-    legend.append("text").attr("x", x_axis).attr("y", text_y_axis).text(player.player).style("font-size", "15px").attr("alignment-baseline", "middle");
+    legend.append("text").attr("x", x_axis).attr("y", text_y_axis).text(SubGroup.SubGroup).style("font-size", "15px").attr("alignment-baseline", "middle");
 
     x_axis += 180;
   })

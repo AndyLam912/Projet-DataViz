@@ -1,4 +1,5 @@
 import * as tooltip from './tooltip.js'
+import * as constants from '../constants.js'
 
 export function DrawTitle(){
     // Add Title
@@ -47,7 +48,7 @@ export function addBars(updated_data, groups, subgroups) {
     // color palette = one color per subgroup
     var color = d3.scaleOrdinal()
         .domain(subgroups)
-        .range(['#5785fc', '#ffe500','#fe1f1f']);
+        .range([constants.GRAY, constants.YELLOW, constants.RED]);
     
     //stack the data? --> stack per subgroup
     var stackedData = d3.stack()

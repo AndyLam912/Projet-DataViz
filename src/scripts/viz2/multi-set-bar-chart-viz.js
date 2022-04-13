@@ -1,4 +1,5 @@
 import * as tooltip from './tooltip.js'
+import * as constants from '../constants.js'
 
 export function DrawTitle(){
     // Add Title
@@ -90,11 +91,11 @@ export function addBars(data, groups, subgroups) {
     // color palette = one color per subgroup
     var color = d3.scaleOrdinal()
         .domain(subgroups)
-        .range(['#70ad47','#ffc000'])
+        .range([constants.NEYMAR_COLOR,constants.ORANGE])
 
     var hoverColor = d3.scaleOrdinal()
         .domain(subgroups)
-        .range(['#378805','#f79500'])
+        .range([constants.NEYMAR_COLOR_HOVER,constants.ORANGE_HOVER])
     
 
     // Show the bars
