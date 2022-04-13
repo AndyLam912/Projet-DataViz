@@ -4,7 +4,6 @@ export function preprocessData (data) {
     let groupedData = d3.group(data, d => d.Season)
     let listSeasonsScores = []
     groupedData.forEach(element => {
-        console.log(element)
         listSeasonsScores.push(
             createSeasonScoresObj(element)
         )

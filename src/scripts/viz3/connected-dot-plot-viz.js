@@ -38,7 +38,6 @@ export function createConnectedDotPlot(data) {
     .call(xAxis)
     .style("stroke", "#000000")
     
-    console.log(allSeasons)
     let yScale = d3.scaleBand().domain(allSeasons).range([0, sizeGraph.height ])
     let yAxis = d3.axisLeft().scale(yScale)
     
@@ -46,7 +45,6 @@ export function createConnectedDotPlot(data) {
     .call(yAxis)
     .style("stroke", "#000000")
 
-    console.log(xScale.ticks())
 
     let graphG = svg.append('g')
     .attr('class', 'graphConnectedDotPlot')

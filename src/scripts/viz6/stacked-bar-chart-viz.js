@@ -25,6 +25,15 @@ export function addBars(updated_data, groups, subgroups) {
         "translate(" + margin.left + "," + margin.top + ")");
 
 
+    const mouseEnterbar = d => {
+        tooltip.getBarValues(d);
+    };
+
+    const mouseLeaveBar = d => {
+        tooltip.removeTooltip();
+    };
+
+
     // Add X axis
     var x = d3.scaleBand()
       .domain(groups)
@@ -69,5 +78,7 @@ export function addBars(updated_data, groups, subgroups) {
                 .attr("x", function(d) { return x(d.data.Player); })
                 .attr("y", function(d) { return y(d[1]); })
                 .attr("height", function(d) { return (y(d[0]) - y(d[1])); })
-                .attr("width", x.bandwidth());
+                .attr("width", x.bandwidth())
+            .on("mouseenter", mouseEnterbar)
+            .on("mouseleave", mouseLeaveBar);
 }
