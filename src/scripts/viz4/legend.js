@@ -1,16 +1,12 @@
 import * as constants from '../constants.js'
 
-const color = d3
-.scaleOrdinal(d3.schemePastel1)
-.domain(
-  ['Completed Pass', 'Attempted Pass', 'GCA Pass', "SCA Pass"]
-);
-
 const STATS = [
-  { stat: 'Completed Pass', color: color('Completed Pass') },
-  { stat: 'Attempted Pass', color: color('Attempted Pass') },
-  { stat: 'GCA Pass', color: color('GCA Pass') },
-  { stat: 'SCA Pass', color: color('SCA Pass') }
+  { stat: 'Completed Pass', color: constants.LIGHT_RED },
+  { stat: 'Failed Pass', color: constants.LIGHT_BLUE },
+  { stat: 'GCA Pass', color: constants.LIGHT_GREEN },
+  { stat: 'SCA Pass', color: constants.LIGHT_PURPLE },
+  { stat: 'Remaining SCA Pass', color: constants.LIGHT_PINK },
+  { stat: 'Remaining Completed Pass', color: constants.LIGHT_YELLOW }
 ];
 
 export function draw() {
@@ -23,7 +19,7 @@ export function draw() {
     .append("svg")
     .attr("class", "legend")
     .attr("height", "300")
-    .attr("width", "150");
+    .attr("width", "170");
 
     STATS.forEach(stat => {
     legend.append("rect").attr("x", x_axis).attr("y", y_axis).attr("width", 15).attr("height", 15).attr("rx", "3").style("fill", stat.color);

@@ -6,9 +6,9 @@
  */
 
 const GROUPS_HEPLER = [
-  "La statistique mesure la performance au niveau des passes du joueur. Elle est calculée en prenant le ratio Nombre de passes complétées / Nombre de tentatives de passes.", 
-  "La statistique mesure la performance des passes complétées. Elle est calculée en prenant le ratio Nombre de passes qui a mené à un tir / Nombre de passes complétées.",
-  "La statistique mesure la performance des passes de type SCA. Elle est calculée en prenant le ratio Nombre de passes qui a mené à un but / Nombre de passes qui a mené à un tir."
+  "La statistique mesure la performance des passes en générale du joueur en s'intéressant au ratio de passes ratées. Elle est calculée en prenant le ratio du nombre de passes complétées (Cmp) divisé par la soustraction du nombre de tentatives de passes (Att) et Cmp.", 
+  "La statistique mesure la performance des passes complétées en s'intéressant au ratio des passes complétées qui ont mené à un tir. Elle est calculée en prenant le ratio du nombre de passes qui a mené à un tir (GCA) divisé par la soustraction du nombre de passes complétées (Cmp) et GCA.",
+  "La statistique mesure la performance des passes de type GCA en s'intéressant au ratio des passes GCA qui ont mené à un but. Elle est calculée en prenant le ratio du nombre de passes qui a mené à un but (SCA) divisé par la soustraction du nombre de passes qui a mené à un tir (GCA) et SCA."
 ];
 
 const tooltip = d3.select("#radio-button .tooltip");

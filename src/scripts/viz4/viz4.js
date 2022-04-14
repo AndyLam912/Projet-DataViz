@@ -1,10 +1,20 @@
 import {getRegionTooltipText, removeRegionToolTip} from './tooltip.js'
+import * as constants from '../constants.js'
 
 // set the dimensions and margins of the pie chart
 const MARGIN = {top: 20, right: 30, bottom: 40, left: 90},
 WIDTH = 250,
 HEIGHT = 250,
 RADIUS = Math.min(WIDTH, HEIGHT) / 2;
+
+const STATS = {
+    'Completed Pass': constants.LIGHT_RED,
+    'Failed Pass': constants.LIGHT_BLUE,
+    'GCA Pass': constants.LIGHT_GREEN,
+    'SCA Pass': constants.LIGHT_PURPLE,
+    'Remaining SCA Pass': constants.LIGHT_PINK,
+    'Remaining Completed Pass': constants.LIGHT_YELLOW
+};
 
 export function drawTitle(){
     // Add Title
@@ -75,14 +85,6 @@ export function update(newDataSet) {
         // local function instanciation
         var key = function(d) { return d.data.label; };
 
-        // TODO instanciate keys
-        var keys = ["Completed Pass", "Attempted Pass", "GCA Pass", "SCA Pass", ]
-
-        // TODO: UPDATE WITH APPROPRIATE COLOR
-        var color = d3
-        .scaleOrdinal(d3.schemePastel1)
-        .domain(keys);
-
         // create pie chart shell
         var pie = d3
         .pie()
@@ -117,7 +119,7 @@ export function update(newDataSet) {
         .enter()
         .insert("path")
         .attr("id", "slice-" + i)
-        .style("fill", function(d) { return color(d.data.label); })
+        .style("fill", function(d) { return STATS[d.data.label]; })
         .each(function(d) {
             this._current = d;
         });
@@ -146,7 +148,7 @@ export function update(newDataSet) {
         .style("cursor", "pointer")
         .on("mouseover", function(d) {
             getRegionTooltipText(d.data.value + " (" + parseFloat(d.data.value/TOTAL * 100).toFixed(2) + "%)");
-        })
+        })  
         .on("mouseout", function(d) {
             removeRegionToolTip();
         });

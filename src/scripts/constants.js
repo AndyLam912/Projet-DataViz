@@ -16,3 +16,10 @@ export const GRAY_HOVER = "#909090"
 
 export const BLUE = "#187bcd"
 export const BLUE_HOVER = "#1167b1"
+
+export const LIGHT_RED = "#fbb4ae"
+export const LIGHT_BLUE = "#b3cde3"
+export const LIGHT_GREEN = "#ccebc5"
+export const LIGHT_PURPLE = "#decbe4"
+export const LIGHT_PINK = "#c67a9d"
+export const LIGHT_YELLOW = "#eec349"
