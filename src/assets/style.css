@@ -1,11 +1,43 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
 #head {
     background-color: rgb(1, 186, 1);
     color:white;
     font-size: 16px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 14.5%;
+    z-index: 100;
 }
+
 img{ 
     background: transparent;
+}
+
+.image-container {
+    position:relative;
+    text-align: center;
+    color: white;
+    margin-bottom: 50px;
+    margin-top: 7%;
+  }
+
+.top-left-image-text {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    text-align: left;
+}
+
+.bottom-left-image-text {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    color: greenyellow;
 }
 
 #title { 
@@ -20,35 +52,12 @@ body{
 }
 
 #intro { 
-    margin: 60px 0px
-}
-
-
-
-
-.row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-}
-  
-.column {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    align-items: center;
-    flex: 1;
-}
-#textIntro { 
-    flex:2;
-    align-items: normal;
-    font-size: 20px;
-    margin-right: 5%
-}
+    margin: 0px 0px
+} 
 
 .website {
     overflow-y: auto;
+    width: 100%;
 }
 
 .sectionTitle { 
