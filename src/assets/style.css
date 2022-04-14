@@ -150,3 +150,7 @@ div[id^="radio-button-"] {
     margin-left: 0.3%;
     margin-right: 3%;
 }
+
+.pie-chart .legend {
+    margin-left: 3%;
+}

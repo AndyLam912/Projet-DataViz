@@ -144,10 +144,10 @@ export function update(newDataSet) {
         .selectAll("path")
         .data(pie(newDataSet[i]), key)
         .style("cursor", "pointer")
-        .on("mouseenter", function(d) {
+        .on("mouseover", function(d) {
             getRegionTooltipText(d.data.value + " (" + parseFloat(d.data.value/TOTAL * 100).toFixed(2) + "%)");
         })
-        .on("mouseleave", function(d) {
+        .on("mouseout", function(d) {
             removeRegionToolTip();
         });
     }

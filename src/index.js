@@ -11,6 +11,7 @@ import * as viz3 from './scripts/viz3/connected-dot-plot-viz.js'
 import * as viz4 from './scripts/viz4/viz4.js'
 import * as preproc4 from './scripts/viz4/preprocess.js'
 import * as viz4tooltip from './scripts/viz4/tooltip.js'
+import * as legend4 from './scripts/viz4/legend.js'
 
 import * as viz5 from './scripts/viz5/multi-set-bar-chart-viz.js'
 import * as preproc5 from './scripts/viz5/preprocess.js'
@@ -88,6 +89,7 @@ Promise.all([
       [GCA_NEYMAR, GCA_MESSI, GCA_RONALDO]
     ]);
     viz4tooltip.showToolTip();
+    legend4.draw();
 
     /* -------------------------------------------------------------------------------------------------*/
                                 /* For the multi set bar chart (vizualisation 5) */
