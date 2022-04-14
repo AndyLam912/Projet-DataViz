@@ -59,6 +59,7 @@ body{
 .sectionContent {
     font-size: 20px;
     margin: 5px 20% 30px 20%;
+    text-align: justify;
 }
 
 .viz-title {
