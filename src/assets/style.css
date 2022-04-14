@@ -1,3 +1,52 @@
+
+#head {
+    background-color: rgb(1, 186, 1);
+    color:white;
+    font-size: 16px;
+}
+img{ 
+    background: transparent;
+}
+
+#title { 
+    padding: 20px 0px;
+    text-align: center;
+    font-size: 60px;
+    color: white;
+}
+
+body{
+    margin: 0px
+}
+
+#intro { 
+    margin: 60px 0px
+}
+
+
+
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+  
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    align-items: center;
+    flex: 1;
+}
+#textIntro { 
+    flex:2;
+    align-items: normal;
+    font-size: 20px;
+    margin-right: 5%
+}
+
 .website {
     overflow-y: auto;
 }
