@@ -11,8 +11,8 @@ const STATS = [
 
 export function draw() {
   var x_axis = 10;
-  var y_axis = 130;
-  var text_y_axis = 140;
+  var y_axis = 80;
+  var text_y_axis = 90;
 
   var legend = d3
     .select(".pie-chart")
