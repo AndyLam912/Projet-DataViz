@@ -10,7 +10,7 @@ const STATS = [
 ];
 
 export function draw() {
-  var x_axis = 10;
+  var x_axis = 0;
   var y_axis = 80;
   var text_y_axis = 90;
 
@@ -19,9 +19,44 @@ export function draw() {
     .append("svg")
     .attr("class", "legend")
     .attr("height", "300")
-    .attr("width", "170");
+    .attr("width", "200");
 
-    STATS.forEach(stat => {
+  STATS.forEach(stat => {
+    const DEFAULT = ["Completed Pass", "Failed Pass"]
+    if (!DEFAULT.includes(stat.stat)) {
+      return;
+    }
+    legend.append("rect").attr("x", x_axis).attr("y", y_axis).attr("width", 15).attr("height", 15).attr("rx", "3").style("fill", stat.color);
+    x_axis += 20;
+    legend.append("text").attr("x", x_axis).attr("y", text_y_axis).text(stat.stat).style("font-size", "15px").attr("alignment-baseline", "middle");
+
+    x_axis -= 20;
+    y_axis += 30;
+    text_y_axis += 30;
+  });
+}
+
+export function update(statsToAdd) {
+  let legend = d3
+  .select(".pie-chart .legend")
+
+  legend
+  .selectAll("rect")
+  .remove();
+
+  legend
+  .selectAll("text")
+  .remove();
+
+  var x_axis = 10;
+  var y_axis = 80;
+  var text_y_axis = 90;
+
+  STATS.forEach(stat => {
+    if (!statsToAdd.includes(stat.stat)) {
+      return;
+    }
+
     legend.append("rect").attr("x", x_axis).attr("y", y_axis).attr("width", 15).attr("height", 15).attr("rx", "3").style("fill", stat.color);
     x_axis += 20;
     legend.append("text").attr("x", x_axis).attr("y", text_y_axis).text(stat.stat).style("font-size", "15px").attr("alignment-baseline", "middle");

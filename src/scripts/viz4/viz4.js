@@ -1,4 +1,5 @@
 import {getRegionTooltipText, removeRegionToolTip} from './tooltip.js'
+import * as legend from './legend.js'
 import * as constants from '../constants.js'
 
 // set the dimensions and margins of the pie chart
@@ -30,8 +31,23 @@ export function loadRadioButton(datasets) {
     d3
     .selectAll("#radio-button input")
     .on("change", function() {
-        console.log(this.value)
-        update(datasets[(this.value == "cmp") ? 0 : (this.value == "sca") ? 1 : 2])
+        update(datasets[(this.value == "cmp") ? 0 : (this.value == "sca") ? 1 : 2]);
+        let statsToShow = []
+        switch(this.value) {
+            case "cmp":
+                statsToShow.push("Completed Pass")
+                statsToShow.push("Failed Pass")
+                break;
+            case "sca":
+                statsToShow.push("SCA Pass")
+                statsToShow.push("Remaining Completed Pass")
+                break;
+            case "gca":
+                statsToShow.push("GCA Pass")
+                statsToShow.push("Remaining SCA Pass")
+                break;
+        }
+        legend.update(statsToShow);
     })
 }
 
