@@ -13,7 +13,7 @@
           <div id = 'navbar'>
             <a href="#preface">Préface</a>
             <a href="#section1">Dynamique sur le terrain</a>
-            <a href="#section2">placeholder</a>
+            <a href="#section2">Perfomance face aux attentes</a>
             <a href="#section3">Ratio buts/tirs</a>
             <a href="#section4">Performance entre-coéquipiers</a>
             <a href="#section5">Possession de la balle</a>
@@ -43,6 +43,8 @@
               Dans le cadre de ce projet, nous allons analyser la performance de Neymar sur plusieurs aspects à l'aide de divers visualisations.
             </div>
           </div>
+
+          <div class="sectionDivider"></div>
           
           <span class="anchor" id="section1"></span>
           <div class="sectionTitle">Dynamique sur le terrain</div>
@@ -51,7 +53,7 @@
             Pour cela, nous évaluons la perfomance de Neymar à l'aide d'un <i>radar chart</i> sous plusieurs catégories: passes complétées, tirs complétées, dribbles réussis, pression appliqué, défense contre dibbleur adverse et enfin le temps de jeu.
             <br>
             <br>
-            Chaque statistique est en pourcentage et plus d'informations sur quel statistique de soccer est précisément évaluée sont disponible par le flottement de la souris par dessus les titres des catégories.
+            Chaque statistique est en pourcentage et plus d'informations sur quelle statistique de soccer est précisément évaluée sont disponible par le flottement de la souris par dessus les titres des catégories.
             <br>
             <br>
             Pour établir un point de comparaison, nous comparons Neymar avec une ligne de base (<i>baseline</i>). Étant donnée qu'on projète les statistiques des saisons 2013 à 2022, la ligne de base est calculé en faisant une moyenne parmis 
@@ -70,15 +72,27 @@
             Le graphe permet aussi de voir si Neymar à un temps de jeu élevé ou non, par rapport à la ligne de base.
           </div>
          
+          <div class="sectionDivider"></div>
+
           <span class="anchor" id="section2"></span>
-          <div class="sectionTitle" >test</div>
-          <div class="sectionContent">test</div>
+          <div class="sectionTitle" >Perfomance face aux attentes</div>
+          <div class="sectionContent">
+            Ensuite, il serait intéressant de regarder le rendement de Neymar par rapport aux attentes. En effet, étant un joueur de grande réputation comme Neymar, il faut être capable d'analyser s'il bat toujours les attentes dans les saisons.
+            Pour s'y faire, nous avons dressé un <i>multi-sets bar chart</i> qui va comparer trois catégories: les buts, les assistes et enfin la statistiques +/-.
+            <br>
+            <br>
+            Chaque catégorie est divisé en deux sous-groupes: la statistique de Neymar contre la statistiques attendues. Plus d'informations sur quelle statistique de soccer est précisément évaluée sont disponible par le flottement de la souris par dessus les titres des catégories.
+            <br>
+            <br> 
+          </div>
           <div class="multi-set-bar-chart">
             <div class="viz-title"></div>
             <div class="chart" id="bar-chart">
               <div class="tooltip"></div>
             </div>
           </div>
+
+          <div class="sectionDivider"></div>
 
           <span class="anchor" id="section3"></span>
           <div class="sectionTitle" >Ratio buts/tirs</div>
@@ -88,6 +102,8 @@
               <div class="tooltip"></div>
             </div>
           </div>
+
+          <div class="sectionDivider"></div>
 
           <span class="anchor" id="section4"></span>
           <div class="sectionTitle">Performance entre-coéquipiers</div>
@@ -117,6 +133,9 @@
             <div class="tooltip"></div>
           </div>
           <br>
+
+          <div class="sectionDivider"></div>
+
           <span class="anchor" id="section5"></span>
           <div class="sectionTitle">Possession de la balle</div>
           <div class="sectionContent">La possession de la balle donne une bonne indication de la performance du joueur. Effectivement, une étude démontre que les équipes ayant une meilleure possesion de balle semble gagner 49,2% de leur parties, soit 20.7% de plus qu'elles en perd (28.7%)[2]. La possesion de la balle est exprimée par les statistique suivantes au soccer: le ratio de réception de passes réussites, le ratio de dribbles réussis, et le ratio de côntroles de la balle réussis (Carries).</div>
@@ -126,6 +145,9 @@
               <div class="tooltip"></div>
             </div>
           </div>
+        
+          <div class="sectionDivider"></div>
+
           <span class="anchor" id="section6"></span>
           <div class="sectionTitle">Fautes</div>
           <div class="sectionContent">
@@ -139,6 +161,8 @@
             </div>
           </div>
         </div>
+
+        <div class="sectionDivider"></div>
 
         <span class="anchor" id="reference"></span>
         <div class="sectionTitle">Références</div>

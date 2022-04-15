@@ -93,6 +93,11 @@ body{
     text-align: justify;
 }
 
+.sectionDivider {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
 .viz-title {
     text-align: center;
     color:gray;
