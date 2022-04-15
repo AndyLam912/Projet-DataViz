@@ -1,6 +1,7 @@
 html, body {
     max-width: 100%;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 #head {
@@ -25,7 +26,7 @@ img{
 
 .top-left-image-text {
     position: absolute;
-    top: 8px;
+    top: 5%;
     left: 16px;
     text-align: left;
 }

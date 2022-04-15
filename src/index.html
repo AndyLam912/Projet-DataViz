@@ -12,7 +12,7 @@
         <div id='head'> 
           <div id = 'navbar'>
             <a href="#preface">Préface</a>
-            <a href="#section1">placeholder</a>
+            <a href="#section1">Dynamique sur le terrain</a>
             <a href="#section2">placeholder</a>
             <a href="#section3">Ratio buts/tirs</a>
             <a href="#section4">Performance entre-coéquipiers</a>
@@ -45,8 +45,18 @@
           </div>
           
           <span class="anchor" id="section1"></span>
-          <div class="sectionTitle">test</div>
-          <div class="sectionContent">test</div>
+          <div class="sectionTitle">Dynamique sur le terrain</div>
+          <div class="sectionContent">
+            Évidement, Neymar est un attaquant, et ce qui est attendu d'un attanquant est d'être aggressif et marquer des buts. Cependant, le soccer étant un jeu en équipe, il est important de visualiser la perfomance dans divers secteurs. 
+            Pour cela, nous évaluons la perfomance de Neymar à l'aide d'un <i>radar chart</i> sous plusieurs catégories: passes complétées, tirs complétées, dribbles réussis, pression appliqué, défense contre dibbleur adverse et enfin le temps de jeu.
+            <br>
+            <br>
+            Chaque statistique est en pourcentage et plus d'informations sur quel statistique de soccer est précisément évaluée sont disponible par le flottement de la souris par dessus les titres des catégories.
+            <br>
+            <br>
+            Pour établir un point de comparaison, nous comparons Neymar avec une ligne de base (<i>baseline</i>). Étant donnée qu'on projète les statistiques des saisons 2013 à 2022, la ligne de base est calculé en faisant une moyenne parmis 
+            les 8 meilleurs attaquants, selon l'article fait par <i>PlayersBio</i> [1]. Par les 8 attaquants, Neymar est bien sûr inclus pour la ligne de base, et les 7 autres étant: Messi, Ronaldo, Lewandowski, Salah, Immobile, Gnarby et Heung-min.
+          </div>
           <div class="radar-chart-global">
             <div class="radar-chart">
               <div class="viz-title"></div>
@@ -55,7 +65,11 @@
               </div>
             </div>
           </div>
-          
+          <div class="sectionContent">
+            Comme on peut le voir, non seulement peut-on visualiser la perfomance de Neymar sous diverses catégories, mais pouvoir aussi établir dans quel catégorie il excelle et dans laquel il sous-performe, par rapport à la ligne de base des meilleurs attaquants.
+            Le graphe permet aussi de voir si Neymar à un temps de jeu élevé ou non, par rapport à la ligne de base.
+          </div>
+         
           <span class="anchor" id="section2"></span>
           <div class="sectionTitle" >test</div>
           <div class="sectionContent">test</div>
@@ -105,7 +119,7 @@
           <br>
           <span class="anchor" id="section5"></span>
           <div class="sectionTitle">Possession de la balle</div>
-          <div class="sectionContent">La possession de la balle donne une bonne indication de la performance du joueur. Effectivement, une étude démontre que les équipes ayant une meilleure possesion de balle semble gagner 49,2% de leur parties, soit 20.7% de plus qu'elles en perd (28.7%)[1]. La possesion de la balle est exprimée par les statistique suivantes au soccer: le ratio de réception de passes réussites, le ratio de dribbles réussis, et le ratio de côntroles de la balle réussis (Carries).</div>
+          <div class="sectionContent">La possession de la balle donne une bonne indication de la performance du joueur. Effectivement, une étude démontre que les équipes ayant une meilleure possesion de balle semble gagner 49,2% de leur parties, soit 20.7% de plus qu'elles en perd (28.7%)[2]. La possesion de la balle est exprimée par les statistique suivantes au soccer: le ratio de réception de passes réussites, le ratio de dribbles réussis, et le ratio de côntroles de la balle réussis (Carries).</div>
           <div class="multi-set-bar-chart-2">
             <div class="viz-title"></div>
             <div class="chart" id="bar-chart">
@@ -128,7 +142,9 @@
 
         <span class="anchor" id="reference"></span>
         <div class="sectionTitle">Références</div>
-        <a class="sectionContent" href="https://www.researchgate.net/publication/348569956_Relationship_between_ball_possession_and_match_outcome_in_UEFA_Champions_League#:~:text=Overall%2C%20teams%20with%20more%20ball,lost%2035.9%25%20of%20the%20matches"> [1] Relationship between ball possession and match outcome in UEFA Champions League</a>
+        <a class="sectionContent" href="https://playersbio.com/best-forwards-in-soccer/"> [1] Top 12 Best Forwards in Soccer</a>
+        <br>
+        <a class="sectionContent" href="https://www.researchgate.net/publication/348569956_Relationship_between_ball_possession_and_match_outcome_in_UEFA_Champions_League#:~:text=Overall%2C%20teams%20with%20more%20ball,lost%2035.9%25%20of%20the%20matches"> [2] Relationship between ball possession and match outcome in UEFA Champions League</a>
         <script src="https://d3js.org/d3-array.v2.min.js"></script>
         <script src="https://d3js.org/d3.v5.js"></script>
         <script src="./index.js"></script>
