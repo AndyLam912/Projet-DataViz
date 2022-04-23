@@ -242,9 +242,9 @@ div[id^="radio-button-"] {
     margin-left: 5%;
 }
 
-.helpicon {
+.radio-label {
     margin-left: 0.3%;
-    margin-right: 3%;
+    margin-right: 2%;
 }
 
 .pie-chart .legend {

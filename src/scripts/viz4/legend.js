@@ -9,6 +9,15 @@ const STATS = [
   { stat: 'Remaining Completed Pass', color: constants.LIGHT_YELLOW }
 ];
 
+const FRENCH = {
+  'Completed Pass': 'Passes complétées',
+  'Failed Pass': 'Passes ratées',
+  'GCA Pass': 'Passes de type GCA',
+  'SCA Pass': 'Passes de type SCA',
+  'Remaining SCA Pass': 'Restant des passes SCA',
+  'Remaining Completed Pass': 'Restant des passes complétées'
+};
+
 export function draw() {
   var x_axis = 0;
   var y_axis = 80;
@@ -28,7 +37,7 @@ export function draw() {
     }
     legend.append("rect").attr("x", x_axis).attr("y", y_axis).attr("width", 15).attr("height", 15).attr("rx", "3").style("fill", stat.color);
     x_axis += 20;
-    legend.append("text").attr("x", x_axis).attr("y", text_y_axis).text(stat.stat).style("font-size", "15px").attr("alignment-baseline", "middle");
+    legend.append("text").attr("x", x_axis).attr("y", text_y_axis).text(FRENCH[stat.stat]).style("font-size", "15px").attr("alignment-baseline", "middle");
 
     x_axis -= 20;
     y_axis += 30;
@@ -59,7 +68,7 @@ export function update(statsToAdd) {
 
     legend.append("rect").attr("x", x_axis).attr("y", y_axis).attr("width", 15).attr("height", 15).attr("rx", "3").style("fill", stat.color);
     x_axis += 20;
-    legend.append("text").attr("x", x_axis).attr("y", text_y_axis).text(stat.stat).style("font-size", "15px").attr("alignment-baseline", "middle");
+    legend.append("text").attr("x", x_axis).attr("y", text_y_axis).text(FRENCH[stat.stat]).style("font-size", "15px").attr("alignment-baseline", "middle");
 
     x_axis -= 20;
     y_axis += 30;
