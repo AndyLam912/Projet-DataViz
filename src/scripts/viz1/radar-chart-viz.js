@@ -31,12 +31,12 @@ const scale = d3.scaleLinear()
 
 
 const labels_text = 
-["Pourcentage de passes complétées (Cmp%)", 
-"Pourcentage de bons tirs effectués sur le but adverse (SoT%)", 
-"Pourcentage des dribbles réussis sur une adversaire (Succ%)", 
-"Pourcentage de fois où l'équipe a pris possession du ballon suivant l'application de la pression par le joueur sur un adversaire en possession du ballon (%)", 
-"Pourcentage de défense réussi contre un dribbleur adverse (Tkl%)", 
-"Pourcentage du nombre total de minutes de l'équipe pendant lesquelles le joueur était sur le terrain"]
+[["Pourcentage de passes complétées", "Cmp%"], 
+["Pourcentage de bons tirs effectués sur le but adverse", "SoT%"], 
+["Pourcentage des dribbles réussis sur une adversaire" , "Succ%"], 
+["Pourcentage de fois où l'équipe a pris possession du ballon suivant l'application de la pression par le joueur sur un adversaire en possession du ballon" , "%"], 
+["Pourcentage de défense réussi contre un dribbleur adverse" , "Tkl%"], 
+["Pourcentage du nombre total de minutes de l'équipe pendant lesquelles le joueur était sur le terrain" , "Min%"]]
 
 
 

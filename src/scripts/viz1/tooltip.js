@@ -13,8 +13,20 @@ export function getLabelsText(data) {
   const { x, y } = d3.event;
   tooltip.style("top", `${y - 20}px`);
   tooltip.style("left", `${x + 50}px`);
-  tooltip.text(data.tooltip);
   tooltip.style("color", 'white');
+
+  tooltip.append('p')
+  .style('margin', '4px')
+  .text(`${data.tooltip[0]}`)
+
+  tooltip.append('p')
+  .style('margin', '4px')
+  .style('text-decoration', 'underline')
+  .text('Statistique impliquée: ')
+
+  tooltip.append('p')
+  .style('margin', '4px')
+  .text(`${data.tooltip[1]}`)
 }
 
 

@@ -24,13 +24,6 @@ img{
     margin-bottom: 50px;
   }
 
-.top-left-image-text {
-    position: absolute;
-    top: 5%;
-    left: 16px;
-    text-align: left;
-}
-
 .anchor{
     display: block;
     height: 50px;

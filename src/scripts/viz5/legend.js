@@ -1,14 +1,13 @@
 import * as constants from '../constants.js'
 
-const SubGroups = [{ SubGroup: 'Successful Pass Reception (%)', color: constants.GRAY}, 
-                { SubGroup: 'Successful Dribbles (%)', color: constants.ORANGE},
-                { SubGroup: 'Successful Control of The Ball (%)', color: constants.BLUE}];
+const SubGroups = [{ SubGroup: 'Réceptions de passes réussites (%)', color: constants.GRAY}, 
+                { SubGroup: 'Dribbles réussis (%)', color: constants.ORANGE},
+                { SubGroup: 'Contrôles de la balle réussis (%)', color: constants.BLUE}];
 
 export function draw() {
   var x_axis = 150;
   var rect_y_axis = 5;
   var text_y_axis = 15;
-  var third_subgroup = false
 
   var legend = d3.select(".multi-set-bar-chart-2")
     .append("svg")
@@ -21,10 +20,10 @@ export function draw() {
         x_axis += 20;
         legend.append("text").attr("x", x_axis).attr("y", text_y_axis).text(SubGroup.SubGroup).style("font-size", "15px").attr("alignment-baseline", "middle");
 
-        if(SubGroup.SubGroup === 'Successful Dribbles (%)'){
-            x_axis += 160;
+        if(SubGroup.SubGroup === 'Dribbles réussis (%)'){
+            x_axis += 140;
         }else{
-            x_axis += 200;
+            x_axis += 230;
         }
   })
 }

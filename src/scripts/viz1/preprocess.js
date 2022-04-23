@@ -53,7 +53,7 @@ export function roundStats(stats1, stats2) {
 
 export function generateData(stats, length) {
   const data = [];
-  const labels = ['Passing', 'Shooting', 'Dribbles', 'pressures', 'Defense', 'Playing Time'];
+  const labels = ['Passes', 'Tirs', 'Dribbles', 'pression', 'Défense', 'Temps de jeu'];
 
   var stats_keys = Object.keys(stats)
   for (let i = 0; i < length; i++) {
