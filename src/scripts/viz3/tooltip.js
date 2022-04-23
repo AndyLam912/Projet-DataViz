@@ -2,12 +2,8 @@
 
 const tooltip = d3.select("#connected-dot-plot .tooltip");
 
-/**
- * Defines the contents of the tooltip.
- *
- * @param {object} d The data associated to the hovered element
- * @returns {string} The tooltip contents
- */
+
+// Defines the format of the tooltip 
 export function getValueText(data, playerName, pos ) {
   tooltip.style("opacity", 1)
   .style("top", `${pos.y + 10}px`)
@@ -27,13 +23,13 @@ export function getValueText(data, playerName, pos ) {
   .text(" Gls/SoT : " + formatData(data[playerName]))
 
 }
-
+// Format data score 
 function formatData(value) { 
   let percentageValue = value*100
   return `${percentageValue.toFixed(2)} %`
 }
 
-
+// Function to hide tooltip
 export function removeTooltip() {
   tooltip.text("");
   tooltip.style("opacity", 0);

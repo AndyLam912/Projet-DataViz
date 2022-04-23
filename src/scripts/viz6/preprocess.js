@@ -1,3 +1,4 @@
+// Remove all unused columns from the data
 export function filterData(data) {
     const validKeys = ['Player', 'CrdY', 'CrdR', 'Fls'];
     for (var i = 0; i < data.length; i++){
@@ -6,6 +7,7 @@ export function filterData(data) {
     return data;
 }
 
+// Calculate number of warnings and return data
 export function updateData(filter_data) {
     for (var i = 0; i < filter_data.length; i++){
         filter_data[i].Warning = filter_data[i].Fls - (filter_data[i].CrdY + filter_data[i].CrdR);
@@ -14,6 +16,7 @@ export function updateData(filter_data) {
     return filter_data;
 }
 
+// Function to get all player's name (all group)
 export function getGroups(updated_data) {
     var groups = [];
     for (var i = 0; i < updated_data.length; i++){
@@ -22,6 +25,7 @@ export function getGroups(updated_data) {
     return groups;
 }
 
+// Function to group every player's fouls informations
 export function getSubGroups(updated_data) {
     var sub_groups = [];
     

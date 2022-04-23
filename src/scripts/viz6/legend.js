@@ -1,7 +1,7 @@
 import * as constants from '../constants.js'
 
-const fouls = [{ foul: 'Avertissements', color: constants.GRAY }, { foul: 'Cartons Jaunes', color: constants.YELLOW }, { foul: 'Cartons Rouges', color: constants.RED }];
-
+const fouls = [{ foul: 'Cartons Rouges', color: constants.RED }, { foul: 'Cartons Jaunes', color: constants.YELLOW }, { foul: 'Avertissements', color: constants.GRAY } ];
+// Draw legend of this visualisation
 export function draw() {
   var x_axis = 10;
   var y_axis = 130;

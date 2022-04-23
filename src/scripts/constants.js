@@ -1,3 +1,5 @@
+// File that contains all constants used in multiple visualisations
+
 export const NEYMAR_COLOR = "#009b39"
 export const NEYMAR_COLOR_HOVER = "#378805"
 

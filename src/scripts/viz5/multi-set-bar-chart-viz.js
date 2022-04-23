@@ -1,6 +1,13 @@
 import * as tooltip from './tooltip.js'
 import * as constants from '../constants.js'
 
+/**
+ * This file is used to create and illustrate the multi-set bar chart
+ * Inspired from code of multiset bar chart of viz 2
+ * modified in order to illustre 3 groups of 3 sub groups
+ */
+
+// Function to draw the title above the chart
 export function DrawTitle(){
     // Add Title
     d3.select('.multi-set-bar-chart-2 .viz-title')
@@ -8,6 +15,7 @@ export function DrawTitle(){
       .text('Comparaison des statistiques sur le contrôle de la balle pour les saisons entre 2013 à 2022')
 }
 
+// Function to draw the multi-set bar chart, axis and bars included
 export function addBars(data, groups, subgroups) {
     // set the dimensions and margins of the graph
     var margin = {top: 20, right: 30, bottom: 40, left: 200},
@@ -68,7 +76,7 @@ export function addBars(data, groups, subgroups) {
             .style("font-weight", "500");
 
 
-    // Another scale for subgroup position?
+    // Another scale for subgroup position
     var ySubgroup = d3.scaleBand()
         .domain(subgroups)
         .range([0, y.bandwidth()])
@@ -79,6 +87,7 @@ export function addBars(data, groups, subgroups) {
         .domain(subgroups)
         .range([constants.GRAY,constants.ORANGE, constants.BLUE])
 
+    // color palette for hover on = one color per subgroup
     var hoverColor = d3.scaleOrdinal()
         .domain(subgroups)
         .range([constants.GRAY_HOVER,constants.ORANGE_HOVER, constants.BLUE_HOVER])
@@ -87,7 +96,6 @@ export function addBars(data, groups, subgroups) {
     // Show the bars
     svg.append("g")
         .selectAll("g")
-        // Enter in data = loop group per group
         .data(data)
         .enter()
         .append("g")

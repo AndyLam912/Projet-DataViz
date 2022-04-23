@@ -15,6 +15,7 @@ import * as legend4 from './scripts/viz4/legend.js'
 
 import * as viz5 from './scripts/viz5/multi-set-bar-chart-viz.js'
 import * as preproc5 from './scripts/viz5/preprocess.js'
+import * as viz5tooltip from './scripts/viz5/tooltip.js'
 import * as legend5 from './scripts/viz5/legend.js'
 
 import * as viz6 from './scripts/viz6/stacked-bar-chart-viz.js'
@@ -61,11 +62,11 @@ Promise.all([
     const viz2_groups = preproc2.getGroups(data[1]);
     const viz2_subgroups = preproc2.getSubGroups(data[1]);
     viz2.DrawTitle();
-    viz2.addBars(data[1], viz2_groups, viz2_subgroups);
+    viz2.createMultiSetBarChart(data[1], viz2_groups, viz2_subgroups);
     legend2.draw();
 
     /* -------------------------------------------------------------------------------------------------*/
-                            /* For the multi set bar chart (vizualisation 3) */
+                            /* For the connected dot plot (vizualisation 3) */
 
     viz3.createConnectedDotPlot(data[2])
 
@@ -101,6 +102,7 @@ Promise.all([
     viz5.DrawTitle();
     viz5.addBars(viz5_data, viz5_groups, viz5_subgroup);
     legend5.draw();
+    viz5tooltip.showToolTip();
 
     /* -------------------------------------------------------------------------------------------------*/
     /* For the Stacked Bar Chart (vizualisation 6) */
@@ -109,7 +111,7 @@ Promise.all([
     const viz6_groups = preproc6.getGroups(updated_data);
     const viz6_subgroups = preproc6.getSubGroups(updated_data);
 
-    viz6.addBars(updated_data, viz6_groups, viz6_subgroups);
+    viz6.drawStackedBarChart(updated_data, viz6_groups, viz6_subgroups);
     legend6.draw();
     /* -------------------------------------------------------------------------------------------------*/
 }).catch(function(err) {

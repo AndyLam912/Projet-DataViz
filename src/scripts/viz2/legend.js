@@ -3,6 +3,10 @@ import * as constants from '../constants.js'
 const SubGroups = [{ SubGroup: 'Statistiques de Neymar', color: constants.NEYMAR_COLOR}, 
                 { SubGroup: 'Statistiques attendues', color: constants.ORANGE}];
 
+/**
+ * Function used to draw legend for radar chart visualisation
+ * Inspired from: https://d3-graph-gallery.com/graph/custom_legend.html
+ */
 export function draw() {
   var x_axis = 150;
   var rect_y_axis = 5;

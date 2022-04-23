@@ -1,5 +1,5 @@
 
-
+// Draw legend
 export function draw(playerColors) {
 
   const CIRCLE_WIDTH = 9

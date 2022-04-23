@@ -2,12 +2,7 @@ const tooltip = d3.select(".radar-chart .chart .tooltip");
 import * as constants from '../constants.js'
 
 
-/**
- * Defines the contents of the tooltip.
- *
- * @param {object} d The data associated to the hovered element
- * @returns {string} The tooltip contents
- */
+// Tooltip on label hover to explain which soccer statistic is being evaluated
 export function getLabelsText(data) {
   tooltip.style("opacity", 1);
   const { x, y } = d3.event;
@@ -29,7 +24,7 @@ export function getLabelsText(data) {
   .text(`${data.tooltip[1]}`)
 }
 
-
+// Tooltip to illustrate value of specific tip on hover
 export function getTipValue(data) {
   if(data.color === constants.NEYMAR_COLOR){
     data.color = 'lightgreen';
@@ -43,7 +38,7 @@ export function getTipValue(data) {
   tooltip.style("color", data.color);
 }
 
-
+// Remove tooltip when hover off
 export function removeTooltip() {
   tooltip.text("");
   tooltip.style("opacity", 0);

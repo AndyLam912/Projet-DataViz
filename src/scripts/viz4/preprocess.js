@@ -1,3 +1,4 @@
+// Function to get player completed pass data
 export function getPlayerCompletedPassData(player, data) {
     let parsedData = d3.map(data, d => d.Player)
     return [
@@ -12,6 +13,7 @@ export function getPlayerCompletedPassData(player, data) {
     ];
 }
 
+// Function to get player effective gca pass data
 export function getPlayerEffectiveGCAPassData(player, data) {
     let parsedData = d3.map(data, d => d.Player)
     let GCAPass = parsedData.get(player).GCAPassLive + parsedData.get(player).GCAPassDead
@@ -28,6 +30,7 @@ export function getPlayerEffectiveGCAPassData(player, data) {
     ];
 }
 
+// Function to get player effective sca pass data
 export function getPlayerEffectiveSCAPassData(player, data) {
     let parsedData = d3.map(data, d => d.Player)
     let SCAPass = parsedData.get(player).SCAPassLive + parsedData.get(player).SCAPassDead

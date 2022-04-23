@@ -1,19 +1,12 @@
 const tooltip = d3.select(".multi-set-bar-chart .chart .tooltip");
 
-/**
- * Defines the contents of the tooltip.
- *
- * @param {object} d The data associated to the hovered element
- * @returns {string} The tooltip contents
- */
-
 const GROUPS_HEPLER = {
-  "(+/-)": "La  statistique +/- est utilisée pour mesurer l'impact d'un joueur sur le jeu. Elle est calculée en prenant la valeur du nombre de buts effectué par l’équipe (onG) et le soustrayant par le nombre de buts alloué par l’équipe (onGA) lorsque le joueur est sur le terrain. Cette valeur est comparée par le succès d’équipe attendue (onxG soustrait avec onxGA), soit xG+/-. ", 
-  "Assistes": "Le nombre d'assists au buts commis par Neymar (Ast) comparé au nombre d'assists attendu de sa part (xA)",
+  "(+/-)": "Le succès de l'équipe, +/-, comparée par le succès d’équipe attendue, soit xG+/-. ", 
+  "Assistes": "Le nombre d'assiste aux buts commis par Neymar (Ast) comparé au nombre d'assistés attendu de sa part (xA)",
   "Buts": "Le nombre de buts total commis par Neymar (Gls) comparé au nombre de buts attendus par le joueur (xG)",
 };
 
-
+// Tooltip to illustrate the soccer statistic being evaluated in chart
 export function getGroupText(key) {
   tooltip.style("opacity", 1);
   const { x, y } = d3.event;
@@ -30,6 +23,7 @@ export function getGroupText(key) {
   .text(GROUPS_HEPLER[key])
 }
 
+// Remove tooltip when hover off
 export function removeTooltip() {
   tooltip.text("");
   tooltip.style("opacity", 0);

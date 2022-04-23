@@ -1,11 +1,4 @@
-/**
- * Sanitizes the names from the data in the "Player" column.
- *
- * Ensures each word in the name begins with an uppercase letter followed by lowercase letters.
- *
- * @param {object[]} data The dataset with unsanitized names
- * @returns {object[]} The dataset with properly capitalized names
- */
+// Function to create our baseline from 8 strikers
  export function createBaseline(data) {
   var baseline = {};
   var keys = Object.keys(data[0]);
@@ -27,7 +20,7 @@
   return (baseline);
 }
 
-
+// Function to pull only Neymar's data
 export function getNeymarData(data) {
   var neymar = {};
   for (var i = 0; i < data.length; i++) {
@@ -40,7 +33,7 @@ export function getNeymarData(data) {
   return (neymar);
 }
 
-
+// Function to round number to 2 numbers avec dot
 export function roundStats(stats1, stats2) {
   var keys = Object.keys(stats1)
   for (var i = 0; i < keys.length; i++) {
@@ -50,7 +43,7 @@ export function roundStats(stats1, stats2) {
   return (stats1, stats2);
 }
 
-
+// Function to generateData used for visualisation
 export function generateData(stats, length) {
   const data = [];
   const labels = ['Passes', 'Tirs', 'Dribbles', 'pression', 'Défense', 'Temps de jeu'];

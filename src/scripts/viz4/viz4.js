@@ -1,6 +1,12 @@
-import {getRegionTooltipText, removeRegionToolTip} from './tooltip.js'
+import { getRegionTooltipText, removeRegionToolTip } from './tooltip.js'
 import * as legend from './legend.js'
 import * as constants from '../constants.js'
+
+/**
+ * This file is used to create and illustrate the radar chart with Neymar vs Baseline
+ * Inspired from this website: https://bl.ocks.org/rshaker/225c6df494811f46f6ea53eba63da817
+ * and modifying it to suit our needs
+ */
 
 // set the dimensions and margins of the pie chart
 const MARGIN = {top: 20, right: 30, bottom: 40, left: 90},
@@ -8,6 +14,7 @@ WIDTH = 250,
 HEIGHT = 250,
 RADIUS = Math.min(WIDTH, HEIGHT) / 2;
 
+// associate every stats to a color
 const STATS = {
     'Completed Pass': constants.LIGHT_RED,
     'Failed Pass': constants.LIGHT_BLUE,
@@ -17,7 +24,8 @@ const STATS = {
     'Remaining Completed Pass': constants.LIGHT_YELLOW
 };
 
-export function drawTitle(){
+// Function to draw title for all 3 pie chart
+export function drawTitle() {
     // Add Title
     const TITLE = ['Neymar', 'Messi', 'Ronaldo']
     for (let i = 0; i < TITLE.length; i++) {
@@ -27,6 +35,7 @@ export function drawTitle(){
     }
 }
 
+// Function to load radio button set
 export function loadRadioButton(datasets) {
     d3
     .selectAll("#radio-button input")
@@ -51,6 +60,7 @@ export function loadRadioButton(datasets) {
     })
 }
 
+// Function to append and load initial pie chart to the page
 export function initialLoad(dataset) {
     for (let i = 0; i < dataset.length; i++) {
         // append the svg object to the body of the page
@@ -65,15 +75,17 @@ export function initialLoad(dataset) {
             "translate(" + WIDTH/2 + "," + HEIGHT/2 + ")"
         )
 
+        // append g element to the newly created svg object
         svg
         .append("g")
         .attr("id", "slice-" + i);
     }
 
-    // TODO UPDATE
+    // update pie chart with default dataset
     update(dataset);
 }
 
+// Function to compute and return transition state
 function getTransitionDataSet(oldDataSet, newDataSet) {
     var newData = d3.set();
 
@@ -91,10 +103,10 @@ function getTransitionDataSet(oldDataSet, newDataSet) {
     return transitionDataSet;
 }
 
-// Inspired from https://bl.ocks.org/rshaker/225c6df494811f46f6ea53eba63da817
+// Function to create new pie chart shell for newDataSet and transition the old one
 export function update(newDataSet) {
     for (let i = 0; i < newDataSet.length; i++) {
-        // CONST variable
+        // CONST variables
         const DURATION = 1000;
         const TOTAL = newDataSet[i][0].value + newDataSet[i][1].value;
 
@@ -109,12 +121,13 @@ export function update(newDataSet) {
             return d.value;
         });
 
-        // if we want a donut set innerRadius to 0.5
+        // set arc inner and outer radius
         var arc = d3
         .arc()
         .outerRadius(RADIUS * 1.0)
         .innerRadius(RADIUS * 0.0);
-
+        
+        // get current(old) pie chart dataset
         var oldDataSet = d3
         .select("#slice-" + i)
         .selectAll("path")
@@ -123,9 +136,11 @@ export function update(newDataSet) {
 
         if (oldDataSet.length == 0) oldDataSet = newDataSet[i];
 
+        // get transition datasets
         var firstTransitionDataSet = getTransitionDataSet(newDataSet[i], oldDataSet);
         var SecondTransitionDataSet = getTransitionDataSet(oldDataSet, newDataSet[i]);
 
+        // first state transition without duration
         var slice = d3
         .select("#slice-" + i)
         .selectAll("path")
@@ -140,6 +155,7 @@ export function update(newDataSet) {
             this._current = d;
         });
 
+        // second state transition with duration
         slice = d3
         .select("#slice-" + i)
         .selectAll("path")
@@ -154,9 +170,10 @@ export function update(newDataSet) {
             return function(t) {
                 _this._current = interpolate(t);
                 return arc(_this._current);
-                };
-            });
+            };
+        });
 
+        // set tooltip for each slice region
         slice = d3
         .select("#slice-" + i)
         .selectAll("path")

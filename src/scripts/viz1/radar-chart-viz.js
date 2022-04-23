@@ -1,7 +1,14 @@
 import * as tooltip from './tooltip.js'
 import * as constants from '../constants.js'
 
+/**
+ * This file is used to create and illustrate the radar chart with Neymar vs Baseline
+ * Inspired from this website: https://hashnode.com/post/radar-charts-with-d3js-ckiijv82n00dqm5s184e6acpy
+ * and modifying it to suit our needs
+ */
 
+
+// Constants used to build the paths and angles for radar chart (Have the hexagon aspect)
 const NUM_OF_SIDES = 6;
 const NUM_OF_LEVEL = 5,
 
@@ -60,7 +67,7 @@ export function generatePoint({ length, angle }) {
     return point;
 };
 
-
+// Function used to draw paths for the graph (example: the levels, the visualisations of Neymar and Baseline)
 export function drawPath(points, parent) {
     const lineGenerator = d3.line()
         .x(d => d.x)
@@ -80,7 +87,7 @@ export function drawPath(points, parent) {
     }
 };
 
-
+// Function to generate ticks in order to read the chart (0, 20, 40, 60, 80, 100)
 export function genTicks() {
     const ticks = [];
     const step = 100 / NUM_OF_LEVEL;
@@ -98,7 +105,7 @@ export function genTicks() {
     return ticks;
 }
 
-
+// Function to the chart's levels using drawPath function
 export function generateAndDrawLevels() {
 
     for (let level = 1; level <= NUM_OF_LEVEL; level++) {
@@ -116,7 +123,7 @@ export function generateAndDrawLevels() {
     }
 };
 
-
+// Function to complete the chart's hexagon aspect
 export function generateAndDrawLines() {
 
     const group = g.append("g").attr("class", "grid-lines");
@@ -129,7 +136,7 @@ export function generateAndDrawLines() {
 
 };
 
-
+// function to draw the axis' ticks after they were generated using genTicks function
 export function drawAxis(ticks) {
 
     const groupL = g.append("g").attr("class", "tick-lines");
@@ -157,7 +164,7 @@ export function drawAxis(ticks) {
     });
 };
 
-
+// Function to draw either the axis ticks' values or the labels for the categories
 export function drawText(text, point, isAxis, group) {
     const mouseEnter = d => {
         tooltip.getLabelsText(d);
@@ -196,7 +203,7 @@ export function drawText(text, point, isAxis, group) {
 
 };
 
-
+// Function to draw circles as tips of player's visualisation for each category. Can be hovered over it for value
 export function drawCircles(points, n) {
     const mouseEnter = d => {
         tooltip.getTipValue(d);
@@ -235,7 +242,7 @@ export function drawCircles(points, n) {
     }
 };
 
-
+// Function to build and draw Neymar's and Baseline's stats on radar chart
 export function drawData(dataset, dataset2) {
     const mouseEnterBaseline = d => {
         d3.select(".shapeBaseline path").style("opacity", 0.9);
@@ -291,7 +298,7 @@ export function drawData(dataset, dataset2) {
     drawCircles(points1, 1);
 };
 
-
+// Function to draw the label for each category, using drawText function
 export function drawLabels(dataset) {
     const groupL = g.append("g").attr("class", "labels");
     for (let vertex = 0; vertex < NUM_OF_SIDES; vertex++) {

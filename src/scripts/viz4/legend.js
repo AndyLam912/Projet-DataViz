@@ -1,5 +1,11 @@
 import * as constants from '../constants.js'
 
+/**
+ * Function used to draw legend for radar chart visualisation
+ * Inspired from: https://d3-graph-gallery.com/graph/custom_legend.html
+ */
+
+// associate every stat to a color
 const STATS = [
   { stat: 'Completed Pass', color: constants.LIGHT_RED },
   { stat: 'Failed Pass', color: constants.LIGHT_BLUE },
@@ -9,6 +15,7 @@ const STATS = [
   { stat: 'Remaining Completed Pass', color: constants.LIGHT_YELLOW }
 ];
 
+// translate title to french
 const FRENCH = {
   'Completed Pass': 'Passes complétées',
   'Failed Pass': 'Passes ratées',
@@ -18,6 +25,7 @@ const FRENCH = {
   'Remaining Completed Pass': 'Restant des passes complétées'
 };
 
+// Function to draw legend for viz4
 export function draw() {
   var x_axis = 0;
   var y_axis = 80;
@@ -45,6 +53,7 @@ export function draw() {
   });
 }
 
+// Function to update viz4 legend to dataset changes
 export function update(statsToAdd) {
   let legend = d3
   .select(".pie-chart .legend")

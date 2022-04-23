@@ -1,3 +1,4 @@
+// Function used to filter out unwanted data from csv
 export function FilterOutUnwantedData(data) {
     var filteredData = [];
 
@@ -13,7 +14,7 @@ export function FilterOutUnwantedData(data) {
     return filteredData;
 }
 
-
+// Function used to calculate ball control statistic ((carries - dis) / carries)
 export function CalculateBallControlStat(data) {
 
     for (var i = 0; i < data.length; i++) {
@@ -31,7 +32,7 @@ export function CalculateBallControlStat(data) {
     return data;
 }
 
-
+// Function change percentages to decimals
 export function ChangetoDecimal(data) {
     var keys = Object.keys(data[0]);
     for (var i = 0; i < data.length; i++) {
@@ -45,6 +46,7 @@ export function ChangetoDecimal(data) {
     return data;
 }
 
+// Function to get the groups
 export function getGroups(data) {
     var groups = []
     for (var i = 0; i < data.length; i++) {
@@ -53,6 +55,7 @@ export function getGroups(data) {
     return groups;
 }
 
+// Function to get the subgroups
 export function getSubGroups(data) {
     var keys = Object.keys(data[0]);
     var subgroups = [];

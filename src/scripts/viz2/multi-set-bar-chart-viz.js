@@ -1,6 +1,13 @@
 import * as tooltip from './tooltip.js'
 import * as constants from '../constants.js'
 
+/**
+ * This file is used to create and illustrate the multi-set bar chart
+ * Inspired from this website: https://d3-graph-gallery.com/graph/barplot_grouped_basicWide.html
+ * heavily modified in order to illustrate the bars horizontaly and not verticaly like in website
+ */
+
+// Function to draw the title above the chart
 export function DrawTitle(){
     // Add Title
     d3.select('.multi-set-bar-chart .viz-title')
@@ -8,7 +15,8 @@ export function DrawTitle(){
       .text('Perfomance de Neymar par rapport aux attentes')
 }
 
-export function addBars(data, groups, subgroups) {
+// Function to draw the multi-set bar chart, axis and bars included
+export function createMultiSetBarChart(data, groups, subgroups) {
     // set the dimensions and margins of the graph
     var margin = {top: 20, right: 30, bottom: 40, left: 90},
     width = 900 - margin.left - margin.right,
@@ -82,7 +90,7 @@ export function addBars(data, groups, subgroups) {
         .on("mouseenter", mouseEnterCategory)
         .on("mouseleave", mouseLeaveCategory);
 
-    // Another scale for subgroup position?
+    // Another scale for subgroup position
     var ySubgroup = d3.scaleBand()
         .domain(subgroups)
         .range([0, y.bandwidth()])
@@ -93,6 +101,7 @@ export function addBars(data, groups, subgroups) {
         .domain(subgroups)
         .range([constants.NEYMAR_COLOR,constants.ORANGE])
 
+    // color palette for hover on = one color per subgroup
     var hoverColor = d3.scaleOrdinal()
         .domain(subgroups)
         .range([constants.NEYMAR_COLOR_HOVER,constants.ORANGE_HOVER])
@@ -101,7 +110,6 @@ export function addBars(data, groups, subgroups) {
     // Show the bars
     svg.append("g")
         .selectAll("g")
-        // Enter in data = loop group per group
         .data(data)
         .enter()
         .append("g")

@@ -2,6 +2,11 @@ import * as constants from '../constants.js'
 
 const Players = [{ player: 'Neymar', color: constants.NEYMAR_COLOR }, { player: 'Baseline', color: constants.ORANGE }];
 
+
+/**
+ * Function used to draw legend for radar chart visualisation
+ * Inspired from: https://d3-graph-gallery.com/graph/custom_legend.html
+ */
 export function draw() {
   var x_axis = 10;
   var y_axis = 130;
