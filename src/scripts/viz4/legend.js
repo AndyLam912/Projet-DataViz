@@ -36,7 +36,7 @@ export function draw() {
     .append("svg")
     .attr("class", "legend")
     .attr("height", "300")
-    .attr("width", "200");
+    .attr("width", "250");
 
   STATS.forEach(stat => {
     const DEFAULT = ["Completed Pass", "Failed Pass"]
